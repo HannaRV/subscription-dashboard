@@ -6,6 +6,7 @@
  */
 
 import express from 'express'
+import { SubscriptionRepository } from '../models/SubscriptionRepository.js'
 
 export const router = express.Router()
 router.get('/', (req, res) => {
