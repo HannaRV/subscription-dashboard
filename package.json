@@ -1,0 +1,26 @@
+{
+  "name": "1dv610-l3",
+  "version": "1.0.0",
+  "description": "A web application for managing and visualizing personal subscriptions focusing on clean code learning",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HannaRV/subscription-dashboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HannaRV/subscription-dashboard/issues"
+  },
+  "homepage": "https://github.com/HannaRV/subscription-dashboard#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
