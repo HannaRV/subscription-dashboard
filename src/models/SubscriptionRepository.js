@@ -38,7 +38,7 @@ export class SubscriptionRepository {
     }
 
     /**
-     * Get all subscriptions.
+     * Gets all subscriptions.
      * 
      * @returns {Array} Array of all subscriptions
      */
@@ -61,7 +61,7 @@ export class SubscriptionRepository {
       }
 
     /**
-     * Get total monthly cost of all active subscriptions.
+     * Gets total monthly cost of all active subscriptions.
      * 
      * @returns {number} Total monthly cost
      */

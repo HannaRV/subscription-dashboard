@@ -6,9 +6,9 @@
  */
 
 import express from 'express'
-import { router } from '../routes/router.js'
+import { SubscriptionRouter } from '../routes/SubscriptionRouter.js'
 
-export class ApplicationServer {
+export class WebServer {
     #expressApplication
 
     constructor() {
@@ -28,7 +28,8 @@ export class ApplicationServer {
     }
 
     #configureRoutes() {
-        this.#expressApplication.use('/', router)
+        const subscriptionRouter = new SubscriptionRouter()
+        this.#expressApplication.use('/', subscriptionRouter.getRouter())
     }
 
     getApplication() {

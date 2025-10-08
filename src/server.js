@@ -5,10 +5,10 @@
  * @version 1.0.0
  */
 
-import { ApplicationServer } from './config/express.js'
+import { WebServer } from './config/express.js'
 
 const PORT = process.env.PORT || 3000
-const server = new ApplicationServer()
+const server = new WebServer()
 const app = server.getApplication()
 
 app.listen(PORT, () => {
