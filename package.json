@@ -1,18 +1,23 @@
 {
-  "name": "1dv610-l3",
+  "name": "subscription-dashboard",
   "version": "1.0.0",
-  "description": "A web application for managing and visualizing personal subscriptions focusing on clean code learning",
-  "main": "index.js",
+  "description": "A web application for managing and visualizing personal subscriptions focusing on clean code learning.",
+  "type": "module",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/HannaRV/subscription-dashboard.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "subscriptions",
+    "dashboard"
+  ],
+  "author": "Hanna Rubio Vretby",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/HannaRV/subscription-dashboard/issues"
   },
