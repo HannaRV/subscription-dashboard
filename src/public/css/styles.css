@@ -1,0 +1,206 @@
+/* Color palette */
+:root {
+    --primary: #4a5456;
+    --secondary: #7a8e99;
+    --accent: #b0684e;
+    --bg: #e8e4dc;
+    --card: #ffffff;
+    --text: #2d3436;
+    --text-light: #6d6860;
+    --border: #b5a99a;
+    --success: #6a8475;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.add-section,
+.list-section {
+    background: var(--card);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.add-form input,
+.add-form select {
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.add-form input:focus,
+.add-form select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(90, 108, 125, 0.1);
+}
+
+.add-form button {
+    padding: 12px;
+    background: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.add-form button:hover {
+    background: var(--primary);
+}
+
+.subscription-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background: var(--card);
+}
+
+.subscription-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.subscription-info {
+    flex: 1;
+}
+
+.subscription-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.subscription-details {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.subscription-price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--success);
+    margin: 0 20px;
+}
+
+.remove-btn {
+    padding: 8px 16px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.remove-btn:hover {
+    background: #8f6a5f;
+}
+
+.total-cost {
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    border-radius: 4px;
+    text-align: right;
+    font-size: 1.2rem;
+    color: white;
+}
+
+#total-cost {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .subscription-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .subscription-price {
+        margin: 0;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+}
