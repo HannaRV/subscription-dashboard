@@ -29,6 +29,16 @@ export class SubscriptionController {
      * @param {object} res - Express response object
      */
     displayDashboard(req, res) {
+        res.sendFile('index.html', { root: 'src/views' })
+    }
+
+    /**
+    * Gets subscription data as JSON for API.
+    * 
+    * @param {object} req - Express request object
+    * @param {object} res - Express response object
+    */
+    getSubscriptionsData(req, res) {
         const subscriptions = this.#repository.getAllSubscriptions()
         const totalCost = this.#repository.getTotalMonthlyCost()
 
@@ -56,6 +66,7 @@ export class SubscriptionController {
 
     /**
      * Removes a subscription by name.
+     * 
      * @param {object} req - Express request object
      * @param {object} res - Express response object
      */
@@ -66,8 +77,7 @@ export class SubscriptionController {
             const removed = this.#repository.removeSubscriptionByName(name)
             if (removed) {
                 res.redirect('/')
-            }
-            else {
+            } else {
                 res.status(404).json({ error: 'Subscription not found' })
             }
         } catch (error) {

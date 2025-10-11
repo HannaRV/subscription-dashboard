@@ -22,7 +22,7 @@ export class SubscriptionRepository {
         this.#costCalculator = new CostCalculator()
     }
 
-     /**
+    /**
      * Adds a new subscription to the collection.
      * 
      * @param {string} name - Subscription name
@@ -38,12 +38,20 @@ export class SubscriptionRepository {
     }
 
     /**
-     * Gets all subscriptions.
+     * Gets all subscriptions as plain objects.
      * 
-     * @returns {Array} Array of all subscriptions
+     * @returns {Array} Array of subscription objects
      */
     getAllSubscriptions() {
-        return this.#collection.getAllSubscriptions()
+        const subscriptions = this.#collection.getAllSubscriptions()
+
+        // Convert Subscription objects to plain objects for JSON
+        return subscriptions.map(sub => ({
+            name: sub.getName(),
+            price: sub.getPrice(),
+            frequency: sub.getFrequency(),
+            category: sub.getCategory()
+        }))
     }
 
     /**
@@ -58,7 +66,7 @@ export class SubscriptionRepository {
             return this.#collection.removeSubscription(subscription)
         }
         return false
-      }
+    }
 
     /**
      * Gets total monthly cost of all active subscriptions.
