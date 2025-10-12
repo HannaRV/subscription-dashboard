@@ -153,7 +153,7 @@ h2 {
     margin: 0 20px;
 }
 
-.remove-btn {
+.remove-button {
     padding: 8px 16px;
     background: var(--accent);
     color: white;
@@ -163,7 +163,7 @@ h2 {
     font-weight: 600;
 }
 
-.remove-btn:hover {
+.remove-button:hover {
     background: #8f6a5f;
 }
 

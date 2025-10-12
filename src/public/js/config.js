@@ -26,7 +26,7 @@ export const CSS_CLASSES = {
     SUBSCRIPTION_NAME: 'subscription-name',
     SUBSCRIPTION_DETAILS: 'subscription-details',
     SUBSCRIPTION_PRICE: 'subscription-price',
-    REMOVE_BTN: 'remove-btn',
+    REMOVE_BUTTON: 'remove-button',
     EMPTY_STATE: 'empty-state'
 }
 

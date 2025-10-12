@@ -52,18 +52,18 @@ class SubscriptionElementFactory {
         * @returns {HTMLElement} Subscription element
         */
     static createSubscriptionElement(subscription) {
-        const div = document.createElement('div')
-        div.className = CSS_CLASSES.SUBSCRIPTION_ITEM
+        const containerDiv = document.createElement('div')
+        containerDiv.className = CSS_CLASSES.SUBSCRIPTION_ITEM
 
-        const info = this.createInfoSection(subscription)
-        const price = this.createPriceElement(subscription.price)
-        const removeBtn = this.createRemoveButton(subscription.name)
+        const infoSection = this.createInfoSection(subscription)
+        const priceDiv = this.createPriceElement(subscription.price)
+        const removeForm = this.createRemoveForm(subscription.name)
 
-        div.appendChild(info)
-        div.appendChild(price)
-        div.appendChild(removeBtn)
+        containerDiv.appendChild(infoSection)
+        containerDiv.appendChild(priceDiv)
+        containerDiv.appendChild(removeForm)
 
-        return div
+        return containerDiv
     }
 
     /**
@@ -73,21 +73,21 @@ class SubscriptionElementFactory {
      * @returns {HTMLElement} Info element
      */
     static createInfoSection(subscription) {
-        const info = document.createElement('div')
-        info.className = CSS_CLASSES.SUBSCRIPTION_INFO
+        const infoDiv = document.createElement('div')
+        infoDiv.className = CSS_CLASSES.SUBSCRIPTION_INFO
 
-        const name = document.createElement('div')
-        name.className = CSS_CLASSES.SUBSCRIPTION_NAME
-        name.textContent = subscription.name
+        const nameDiv = document.createElement('div')
+        nameDiv.className = CSS_CLASSES.SUBSCRIPTION_NAME
+        nameDiv.textContent = subscription.name
 
-        const details = document.createElement('div')
-        details.className = CSS_CLASSES.SUBSCRIPTION_DETAILS
-        details.textContent = `${subscription.category} • ${subscription.frequency}`
+        const detailsDiv = document.createElement('div')
+        detailsDiv.className = CSS_CLASSES.SUBSCRIPTION_DETAILS
+        detailsDiv.textContent = `${subscription.category} • ${subscription.frequency}`
 
-        info.appendChild(name)
-        info.appendChild(details)
+        infoDiv.appendChild(nameDiv)
+        infoDiv.appendChild(detailsDiv)
 
-        return info
+        return infoDiv
     }
 
     /**
@@ -107,22 +107,22 @@ class SubscriptionElementFactory {
      * Creates remove button form.
      * 
      * @param {string} name - Subscription name
-     * @returns {HTMLElement} Form with button
+     * @returns {HTMLElement} Form with remove button
      */
-    static createRemoveButton(name) {
-        const form = document.createElement('form')
-        form.action = `${API.REMOVE_URL}/${encodeURIComponent(name)}`
-        form.method = 'POST'
-        form.style.display = 'inline'
+    static createRemoveForm(name) {
+        const removeForm = document.createElement('form')
+        removeForm.action = `${API.REMOVE_URL}/${encodeURIComponent(name)}`
+        removeForm.method = 'POST'
+        removeForm.style.display = 'inline'
 
-        const button = document.createElement('button')
-        button.type = 'submit'
-        button.className = CSS_CLASSES.REMOVE_BTN
-        button.textContent = 'Remove'
+        const removeButton = document.createElement('button')
+        removeButton.type = 'submit'
+        removeButton.className = CSS_CLASSES.REMOVE_BUTTON
+        removeButton.textContent = 'Remove'
 
 
-        form.appendChild(button)
-        return form
+        removeForm.appendChild(removeButton)
+        return removeForm
     }
 
     /**
@@ -131,10 +131,10 @@ class SubscriptionElementFactory {
      * @returns {HTMLElement} Empty state element
      */
     static createEmptyState() {
-        const empty = document.createElement('div')
-        empty.className = CSS_CLASSES.EMPTY_STATE
-        empty.textContent = MESSAGES.EMPTY_STATE
-        return empty
+        const emptyDiv = document.createElement('div')
+        emptyDiv.className = CSS_CLASSES.EMPTY_STATE
+        emptyDiv.textContent = MESSAGES.EMPTY_STATE
+        return emptyDiv
     }
 
     /**
@@ -210,8 +210,8 @@ class SubscriptionView {
     }
 
     #showEmptyState() {
-        const empty = SubscriptionElementFactory.createEmptyState()
-        this.#listContainer.appendChild(empty)
+        const emptyDiv = SubscriptionElementFactory.createEmptyState()
+        this.#listContainer.appendChild(emptyDiv)
     }
 
     #clearContainer() {
@@ -220,3 +220,36 @@ class SubscriptionView {
         }
     }
 }
+
+/**
+ * Main application controller that coordinates API and View.
+ */
+class SubscriptionApp {
+    #api
+    #view
+
+    constructor() {
+        this.#api = new SubscriptionAPI()
+        this.#view = new SubscriptionView(DOM_IDS.SUBSCRIPTIONS_LIST, DOM_IDS.TOTAL_COST)
+    }
+
+    /**
+     * Initializes the application by loading subscriptions.
+     */
+    async initialize() {
+        try {
+            const data = await this.#api.fetchSubscriptions()
+            this.#view.renderSubscriptions(data.subscriptions)
+            this.#view.updateTotalCost(data.totalMonthlyCost)
+        } catch (error) {
+            console.error('Failed to initialize app:', error)
+            this.#view.showError(error.message)
+        }
+    }
+}
+
+// Initialize application when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const app = new SubscriptionApp()
+    app.initialize()
+})
