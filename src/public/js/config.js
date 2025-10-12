@@ -12,9 +12,9 @@
 /**
  * API endpoint configuration.
  */
-export const API = {
-    BASE_URL: '/api/subscriptions',
-    REMOVE_URL: '/remove'
+export const API_ENDPOINTS = {
+    GET_SUBSCRIPTIONS: '/api/subscriptions',
+    REMOVE_SUBSCRIPTION: '/remove'
 }
 
 /**
@@ -33,15 +33,15 @@ export const CSS_CLASSES = {
 /**
  * DOM element ID constants.
  */
-export const DOM_IDS = {
-    SUBSCRIPTIONS_LIST: 'subscriptions-list',
-    TOTAL_COST: 'total-cost'
+export const DOM_ELEMENT_IDS = {
+    SUBSCRIPTIONS_LIST_CONTAINER: 'subscriptions-list',
+    TOTAL_COST_DISPLAY: 'total-cost'
 }
 
 /**
  * User-facing message constants.
  */
-export const MESSAGES = {
+export const USER_MESSAGES = {
     EMPTY_STATE: 'No subscriptions yet. Add your first one!',
     NETWORK_ERROR: 'Network error. Please check your connection.',
     LOAD_ERROR: 'Failed to load subscriptions. Please refresh the page.',

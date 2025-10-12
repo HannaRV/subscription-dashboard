@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-import { API, CSS_CLASSES, DOM_IDS, MESSAGES } from './config.js'
+import { API_ENDPOINTS, CSS_CLASSES, DOM_ELEMENT_IDS, USER_MESSAGES } from './config.js'
 
 /**
  * Handles API communication for subscriptions.
@@ -13,7 +13,7 @@ import { API, CSS_CLASSES, DOM_IDS, MESSAGES } from './config.js'
 class SubscriptionAPI {
     #baseUrl
 
-    constructor(baseUrl = API.BASE_URL) {
+    constructor(baseUrl = API_ENDPOINTS.GET_SUBSCRIPTIONS) {
         this.#baseUrl = baseUrl
     }
 
@@ -28,13 +28,13 @@ class SubscriptionAPI {
             const response = await fetch(this.#baseUrl)
 
             if (!response.ok) {
-                throw new Error(`${MESSAGES.FETCH_ERROR}: ${response.status}`)
+                throw new Error(`${USER_MESSAGES.FETCH_ERROR}: ${response.status}`)
             }
 
             return await response.json()
         } catch (error) {
             if (error.name === 'TypeError') {
-                throw new Error(MESSAGES.NETWORK_ERROR)
+                throw new Error(USER_MESSAGES.NETWORK_ERROR)
             }
             throw error
         }
@@ -111,7 +111,7 @@ class SubscriptionElementFactory {
      */
     static createRemoveForm(name) {
         const removeForm = document.createElement('form')
-        removeForm.action = `${API.REMOVE_URL}/${encodeURIComponent(name)}`
+        removeForm.action = `${API_ENDPOINTS.REMOVE_SUBSCRIPTION}/${encodeURIComponent(name)}`
         removeForm.method = 'POST'
         removeForm.style.display = 'inline'
 
@@ -133,7 +133,7 @@ class SubscriptionElementFactory {
     static createEmptyState() {
         const emptyDiv = document.createElement('div')
         emptyDiv.className = CSS_CLASSES.EMPTY_STATE
-        emptyDiv.textContent = MESSAGES.EMPTY_STATE
+        emptyDiv.textContent = USER_MESSAGES.EMPTY_STATE
         return emptyDiv
     }
 
@@ -230,7 +230,7 @@ class SubscriptionApp {
 
     constructor() {
         this.#api = new SubscriptionAPI()
-        this.#view = new SubscriptionView(DOM_IDS.SUBSCRIPTIONS_LIST, DOM_IDS.TOTAL_COST)
+        this.#view = new SubscriptionView(DOM_ELEMENT_IDS.SUBSCRIPTIONS_LIST_CONTAINER, DOM_ELEMENT_IDS.TOTAL_COST_DISPLAY)
     }
 
     /**
