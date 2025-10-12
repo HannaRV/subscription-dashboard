@@ -39,20 +39,6 @@ export const DOM_IDS = {
 }
 
 /**
- * HTTP method constants.
- */
-export const HTTP_METHODS = {
-    POST: 'POST'
-}
-
-/**
- * Display style constants.
- */
-export const DISPLAY_STYLES = {
-    INLINE: 'inline'
-}
-
-/**
  * User-facing message constants.
  */
 export const MESSAGES = {
@@ -60,11 +46,4 @@ export const MESSAGES = {
     NETWORK_ERROR: 'Network error. Please check your connection.',
     LOAD_ERROR: 'Failed to load subscriptions. Please refresh the page.',
     FETCH_ERROR: 'Failed to fetch subscriptions'
-}
-
-/**
- * Error type constants.
- */
-export const ERROR_TYPES = {
-    TYPE_ERROR: 'TypeError'
 }

@@ -189,6 +189,10 @@ h2 {
     font-style: italic;
 }
 
+.empty-state.error {
+    color: #b83f32;
+}
+
 @media (max-width: 768px) {
     .subscription-item {
         flex-direction: column;
