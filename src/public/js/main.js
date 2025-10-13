@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-import { API_ENDPOINTS, CSS_CLASSES, DOM_ELEMENT_IDS, USER_MESSAGES } from './config.js'
+import { API_ENDPOINTS, CSS_CLASSES, USER_MESSAGES } from './config.js'
 
 /**
  * Handles API communication for subscriptions.
@@ -120,7 +120,6 @@ class SubscriptionElementFactory {
         removeButton.className = CSS_CLASSES.REMOVE_BUTTON
         removeButton.textContent = 'Remove'
 
-
         removeForm.appendChild(removeButton)
         return removeForm
     }
@@ -165,9 +164,12 @@ class SubscriptionView {
      * @param {string} listContainerId - ID of subscriptions list container
      * @param {string} totalCostId - ID of total cost element
      */
-    constructor(listContainerId, totalCostId) {
-        this.#listContainer = document.getElementById(listContainerId)
-        this.#totalCostElement = document.getElementById(totalCostId)
+    constructor() {
+        const LIST_CONTAINER_ID = 'subscriptions-list'
+        const TOTAL_COST_ID = 'total-cost'
+
+        this.#listContainer = document.getElementById(LIST_CONTAINER_ID)
+        this.#totalCostElement = document.getElementById(TOTAL_COST_ID)
     }
 
     /**
@@ -230,7 +232,7 @@ class SubscriptionApp {
 
     constructor() {
         this.#api = new SubscriptionAPI()
-        this.#view = new SubscriptionView(DOM_ELEMENT_IDS.SUBSCRIPTIONS_LIST_CONTAINER, DOM_ELEMENT_IDS.TOTAL_COST_DISPLAY)
+        this.#view = new SubscriptionView()
     }
 
     /**

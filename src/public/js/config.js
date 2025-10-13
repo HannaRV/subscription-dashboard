@@ -31,19 +31,10 @@ export const CSS_CLASSES = {
 }
 
 /**
- * DOM element ID constants.
- */
-export const DOM_ELEMENT_IDS = {
-    SUBSCRIPTIONS_LIST_CONTAINER: 'subscriptions-list',
-    TOTAL_COST_DISPLAY: 'total-cost'
-}
-
-/**
  * User-facing message constants.
  */
 export const USER_MESSAGES = {
     EMPTY_STATE: 'No subscriptions yet. Add your first one!',
     NETWORK_ERROR: 'Network error. Please check your connection.',
-    LOAD_ERROR: 'Failed to load subscriptions. Please refresh the page.',
     FETCH_ERROR: 'Failed to fetch subscriptions'
 }
