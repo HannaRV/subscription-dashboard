@@ -6,6 +6,7 @@
  */
 
 import { SubscriptionRepository } from '../models/SubscriptionRepository.js'
+import { HTTP_STATUS } from '../config/httpStatus.js'
 
 /**
  * Handles HTTP requests for subscription management.
@@ -39,13 +40,20 @@ export class SubscriptionController {
     * @param {object} res - Express response object
     */
     getSubscriptionsData(req, res) {
-        const subscriptions = this.#repository.getAllSubscriptions()
-        const totalCost = this.#repository.getTotalMonthlyCost()
+        try {
+            const subscriptions = this.#repository.getAllSubscriptions()
+            const totalCost = this.#repository.getTotalMonthlyCost()
 
-        res.json({
-            subscriptions,
-            totalMonthlyCost: totalCost
-        })
+            res.json({
+                subscriptions,
+                totalMonthlyCost: totalCost
+            })
+        } catch (error) {
+            res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
+                error: 'Internal Server Error',
+                message: error.message
+            })
+        }
     }
 
     /**
@@ -60,7 +68,10 @@ export class SubscriptionController {
             this.#repository.addSubscription(name, Number(price), frequency, category)
             res.redirect('/')
         } catch (error) {
-            res.status(400).json({ error: error.message })
+            res.status(HTTP_STATUS.BAD_REQUEST).json({
+                error: 'Validation Error',
+                message: error.message
+            })
         }
     }
 
@@ -78,10 +89,16 @@ export class SubscriptionController {
             if (removed) {
                 res.redirect('/')
             } else {
-                res.status(404).json({ error: 'Subscription not found' })
+                res.status(HTTP_STATUS.NOT_FOUND).json({
+                    error: 'Not Found',
+                    message: 'Subscription not found'
+                })
             }
         } catch (error) {
-            res.status(400).json({ error: error.message })
+            res.status(HTTP_STATUS.BAD_REQUEST).json({
+                error: 'Validation Error',
+                message: error.message
+            })
         }
     }
 }
