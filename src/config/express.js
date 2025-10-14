@@ -11,13 +11,13 @@ import { ErrorHandler } from '../middleware/ErrorHandler.js'
 import { SecurityHandler } from '../middleware/SecurityHandler.js'
 
 /**
- * Represents the web server with Express configuration.
+ * Configures and manages the Express web server.
  */
 export class WebServer {
     #expressApplication
 
     /**
-     * Creates a new web server instance with configured Express.
+     * Creates a new web server instance with all middleware configured.
      */
     constructor() {
         this.#expressApplication = express()
@@ -28,12 +28,9 @@ export class WebServer {
         this.#configureErrorHandling()
     }
 
-    /**
-     * Configures Express middleware for parsing requests.
-     */
     #configureSecurityMiddleware() {
-       this.#expressApplication.use(SecurityHandler.applySecurityHeaders)
-       this.#expressApplication.use(SecurityHandler.rateLimit())
+        this.#expressApplication.use(SecurityHandler.applySecurityHeaders)
+        this.#expressApplication.use(SecurityHandler.rateLimit())
     }
 
     #configureBodyParsing() {
@@ -41,17 +38,11 @@ export class WebServer {
         this.#expressApplication.use(express.urlencoded({ extended: true }))
         this.#expressApplication.use(SecurityHandler.sanitizeInput)
     }
-    
-    /**
-     * Configures static file serving from public directory.
-     */
+
     #configureStaticFiles() {
         this.#expressApplication.use(express.static('src/public'))
     }
 
-    /**
-     * Configures application routes.
-     */
     #configureRoutes() {
         const subscriptionRouter = new SubscriptionRouter()
         this.#expressApplication.use('/', subscriptionRouter.getRouter())
@@ -64,7 +55,7 @@ export class WebServer {
     /**
      * Returns the configured Express application instance.
      * 
-     * @returns {express.Application} Express application instance
+     * @returns {express.Application} The Express application
      */
     getApplication() {
         return this.#expressApplication

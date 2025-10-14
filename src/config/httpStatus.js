@@ -5,6 +5,7 @@
  * @author Hanna Rubio Vretby <hr222sy@student.lnu.se>
  * @version 1.0.0
  */
+
 export const HTTP_STATUS = {
   BAD_REQUEST: 400,
   NOT_FOUND: 404,

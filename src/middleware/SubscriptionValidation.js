@@ -7,8 +7,25 @@
 
 import { HTTP_STATUS } from '../config/httpStatus.js'
 
+/**
+ * Validates subscription input data.
+ */
 export class SubscriptionValidation {
+    /**
+     * Validates a new subscription.
+     * 
+     * @param {object} req - Express request object
+     * @param {object} res - Express response object
+     * @param {Function} next - Express next middleware function
+     */
     static validateNewSubscription(req, res, next) {
+        /**
+         * Validates subscription name from URL parameter.
+         * 
+         * @param {object} req - Express request object
+         * @param {object} res - Express response object
+         * @param {Function} next - Express next middleware function
+         */
         try {
             const validator = new DataFieldValidator(req.body)
             validator.validate()
@@ -40,7 +57,15 @@ export class SubscriptionValidation {
     }
 }
 
+/**
+ * Validates individual subscription data fields.
+ */
 class DataFieldValidator {
+    /**
+     * Creates a new field validator.
+     * 
+     * @param {object} data - Data object to validate
+     */
     static #MAX_NAME_LENGTH = 20
     static #MAX_CATEGORY_LENGTH = 20
     static #VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
@@ -51,12 +76,20 @@ class DataFieldValidator {
         this.#data = data
     }
     validate() {
+        /**
+         * Validates all fields.
+         */
         this.#validateName()
         this.#validatePrice()
         this.#validateFrequency()
         this.#validateCategory()
     }
 
+    /**
+     * Returns sanitized data.
+     * 
+     * @returns {object} Sanitized subscription data
+     */
     getSanitizedData() {
         return {
             name: this.#data.name.trim(),

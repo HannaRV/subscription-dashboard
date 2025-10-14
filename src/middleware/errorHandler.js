@@ -7,7 +7,18 @@
 
 import { HTTP_STATUS } from '../config/httpStatus.js'
 
+/**
+ * Main error handler for the application.
+ */
 export class ErrorHandler {
+    /**
+     * Handles all application errors.
+     * 
+     * @param {Error} error - Error object
+     * @param {object} req - Express request object
+     * @param {object} res - Express response object
+     * @param {Function} next - Express next middleware function
+     */
     static handle(error, req, res, next) {
         ErrorLogger.log(error, req)
         const errorResponse = ErrorClassifier.classify(error)
@@ -15,7 +26,16 @@ export class ErrorHandler {
     }
 }
 
+/**
+ * Logs error details to console.
+ */
 class ErrorLogger {
+    /**
+     * Logs error information.
+     * 
+     * @param {Error} error - Error object
+     * @param {object} req - Express request object
+     */
     static log(error, req) {
         console.error('Error occurred:', {
             message: error.message,
@@ -31,7 +51,16 @@ class ErrorLogger {
     }
 }
 
+/**
+ * Classifies errors into appropriate HTTP responses.
+ */
 class ErrorClassifier {
+    /**
+   * Classifies an error and returns appropriate response.
+   * 
+   * @param {Error} error - Error object
+   * @returns {object} Error response object with status, type, and message
+   */
     static #ERROR_TYPE_VALIDATION = 'Validation Error'
     static #ERROR_TYPE_NOT_FOUND = 'Not Found'
     static #ERROR_TYPE_INTERNAL = 'Internal Server Error'
@@ -78,7 +107,16 @@ class ErrorClassifier {
     }
 }
 
+/**
+ * Sends error responses to client.
+ */
 class ErrorResponder {
+    /**
+     * Sends error response.
+     * 
+     * @param {object} res - Express response object
+     * @param {object} errorResponse - Error response object
+     */
     static respond(res, errorResponse) {
         res.status(errorResponse.status).json({
             error: errorResponse.type,

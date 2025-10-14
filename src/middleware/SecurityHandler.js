@@ -7,17 +7,39 @@
 
 import { HTTP_STATUS } from '../config/httpStatus.js'
 
+/**
+ * Handles application security middleware.
+ */
 export class SecurityHandler {
+    /**
+     * Applies security headers to response.
+     * 
+     * @param {object} req - Express request object
+     * @param {object} res - Express response object
+     * @param {Function} next - Express next middleware function
+     */
     static applySecurityHeaders(req, res, next) {
         SecurityHeaders.apply(res)
         next()
     }
 
+    /**
+     * Creates rate limiting middleware.
+     * 
+     * @returns {Function} Rate limiting middleware function
+     */
     static rateLimit() {
         const limiter = new RateLimiter()
         return (req, res, next) => limiter.check(req, res, next)
     }
 
+    /**
+     * Sanitizes user input.
+     * 
+     * @param {object} req - Express request object
+     * @param {object} res - Express response object
+     * @param {Function} next - Express next middleware function
+     */
     static sanitizeInput(req, res, next) {
         try {
             InputSanitizer.sanitize(req)
@@ -28,7 +50,15 @@ export class SecurityHandler {
     }
 }
 
+/**
+ * Applies security headers to HTTP responses.
+ */
 class SecurityHeaders {
+    /**
+     * Applies all security headers.
+     * 
+     * @param {object} res - Express response object
+     */
     static apply(res) {
         res.setHeader('X-Content-Type-Options', 'nosniff')
         res.setHeader('X-Frame-Options', 'DENY')
@@ -39,7 +69,17 @@ class SecurityHeaders {
     }
 }
 
+/**
+ * Implements rate limiting per client IP.
+ */
 class RateLimiter {
+    /**
+     * Checks if client has exceeded rate limit.
+     * 
+     * @param {object} req - Express request object
+     * @param {object} res - Express response object
+     * @param {Function} next - Express next middleware function
+     */
     static #ONE_MINUTE_MS = 60000
     static #MAX_REQUESTS_PER_MINUTE = 100
     static #CLEANUP_PROBABILITY = 0.01
@@ -113,7 +153,15 @@ class RateLimiter {
     }
 }
 
+/**
+ * Sanitizes user input to prevent XSS attacks.
+ */
 class InputSanitizer {
+    /**
+     * Sanitizes request body strings.
+     * 
+     * @param {object} req - Express request object
+     */
     static sanitize(req) {
         if (!req.body) return
 
