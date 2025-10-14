@@ -41,8 +41,8 @@ export class SubscriptionValidation {
 }
 
 class DataFieldValidator {
-    static #MAX_NAME_LENGTH = 50
-    static #MAX_CATEGORY_LENGTH = 30
+    static #MAX_NAME_LENGTH = 20
+    static #MAX_CATEGORY_LENGTH = 20
     static #VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
 
     #data
