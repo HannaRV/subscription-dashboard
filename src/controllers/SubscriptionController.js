@@ -34,19 +34,19 @@ export class SubscriptionController {
     }
 
     /**
-    * Gets subscription data as JSON for API.
-    * 
-    * @param {object} req - Express request object
-    * @param {object} res - Express response object
-    */
+     * Gets subscription data as JSON for API.
+     * 
+     * @param {object} req - Express request object
+     * @param {object} res - Express response object
+     */
     getSubscriptionsData(req, res) {
         try {
             const subscriptions = this.#repository.getAllSubscriptionsAsPlainObjects()
-            const totalCost = this.#repository.getTotalMonthlyCost()
+            const totalMonthlyCost = this.#repository.getTotalMonthlyCost()
 
             res.json({
                 subscriptions,
-                totalMonthlyCost: totalCost
+                totalMonthlyCost
             })
         } catch (error) {
             res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({

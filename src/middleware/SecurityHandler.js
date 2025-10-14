@@ -13,21 +13,23 @@ import { HTTP_STATUS } from '../config/httpStatus.js'
 export class SecurityHandler {
     #rateLimiter
     #inputSanitizer
+    #securityHeaders
 
     constructor() {
         this.#rateLimiter = new RateLimiter()
         this.#inputSanitizer = new InputSanitizer()
+        this.#securityHeaders = new SecurityHeaders()
     }
 
     /**
-     * Applies security headers to response.
+     * Middleware for applying security headers.
      * 
      * @param {object} req - Express request object
      * @param {object} res - Express response object
      * @param {Function} next - Express next middleware function
      */
     applySecurityHeaders(req, res, next) {
-        SecurityHeaders.apply(res)
+        this.#securityHeaders.apply(res)
         next()
     }
 
@@ -60,15 +62,15 @@ export class SecurityHandler {
 }
 
 /**
- * Applies security headers to HTTP responses.
+ * Manages HTTP security headers.
  */
 class SecurityHeaders {
     /**
-     * Applies all security headers.
+     * Sets security headers on the response object.
      * 
      * @param {object} res - Express response object
      */
-    static apply(res) {
+    apply(res) {
         res.setHeader('X-Content-Type-Options', 'nosniff')
         res.setHeader('X-Frame-Options', 'DENY')
         res.setHeader('X-XSS-Protection', '1; mode=block')

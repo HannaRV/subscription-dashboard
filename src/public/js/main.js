@@ -46,11 +46,11 @@ class SubscriptionAPI {
  */
 class SubscriptionElementFactory {
     /**
-        * Creates a complete subscription element.
-        * 
-        * @param {Object} subscription - Subscription data
-        * @returns {HTMLElement} Subscription element
-        */
+     * Creates a complete subscription element.
+     * 
+     * @param {Object} subscription - Subscription data
+     * @returns {HTMLElement} Subscription element
+     */
     createSubscriptionElement(subscription) {
         const containerDiv = document.createElement('div')
         containerDiv.className = CSS_CLASSES.SUBSCRIPTION_ITEM
@@ -160,10 +160,7 @@ class SubscriptionView {
     #elementFactory
 
     /**
-     * Creates a new subscription view.
-     * 
-     * @param {string} listContainerId - ID of subscriptions list container
-     * @param {string} totalCostId - ID of total cost element
+     * Creates a new subscription view with default DOM element IDs.
      */
     constructor() {
         const LIST_CONTAINER_ID = 'subscriptions-list'

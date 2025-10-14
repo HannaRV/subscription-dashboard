@@ -1,6 +1,6 @@
 /**
  * @file Centralized error handling.
- * @module src/middleware/errorHandler.js
+ * @module src/middleware/ErrorHandler.js
  * @author Hanna Rubio Vretby <hr222sy@student.lnu.se>
  * @version 1.0.0
  */
@@ -23,13 +23,16 @@ export class ErrorHandler {
 
     /**
      * Handles all application errors.
-     * 
+     *
      * @param {Error} error - Error object
      * @param {object} req - Express request object
      * @param {object} res - Express response object
      * @param {Function} next - Express next middleware function
      */
     handle(error, req, res, next) {
+        if (res.headersSent) {
+            return next(error)
+        }
         this.#logger.log(error, req)
         const errorResponse = this.#classifier.classify(error)
         this.#responder.respond(res, errorResponse)
@@ -42,7 +45,7 @@ export class ErrorHandler {
 class ErrorLogger {
     /**
      * Logs error information.
-     * 
+     *
      * @param {Error} error - Error object
      * @param {object} req - Express request object
      */
@@ -65,16 +68,15 @@ class ErrorLogger {
  * Classifies errors into appropriate HTTP responses.
  */
 class ErrorClassifier {
-    static #ERROR_TYPE_VALIDATION = 'Validation Error'
-    static #ERROR_TYPE_NOT_FOUND = 'Not Found'
-    static #ERROR_TYPE_INTERNAL = 'Internal Server Error'
-
-    static #VALIDATION_KEYWORDS = ['must be', 'cannot be', 'is required', 'invalid']
-    static #NOT_FOUND_KEYWORD = 'not found'
+    #ERROR_TYPE_VALIDATION = 'Validation Error'
+    #ERROR_TYPE_NOT_FOUND = 'Not Found'
+    #ERROR_TYPE_INTERNAL = 'Internal Server Error'
+    #VALIDATION_KEYWORDS = ['must be', 'cannot be', 'is required', 'invalid']
+    #NOT_FOUND_KEYWORD = 'not found'
 
     /**
      * Classifies an error and returns appropriate response.
-     * 
+     *
      * @param {Error} error - Error object
      * @returns {object} Error response object with status, type, and message
      */
@@ -82,7 +84,7 @@ class ErrorClassifier {
         if (this.#isValidationError(error)) {
             return {
                 status: HTTP_STATUS.BAD_REQUEST,
-                type: ErrorClassifier.#ERROR_TYPE_VALIDATION,
+                type: this.#ERROR_TYPE_VALIDATION,
                 message: error.message
             }
         }
@@ -90,26 +92,26 @@ class ErrorClassifier {
         if (this.#isNotFoundError(error)) {
             return {
                 status: HTTP_STATUS.NOT_FOUND,
-                type: ErrorClassifier.#ERROR_TYPE_NOT_FOUND,
+                type: this.#ERROR_TYPE_NOT_FOUND,
                 message: error.message
             }
         }
 
         return {
             status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
-            type: ErrorClassifier.#ERROR_TYPE_INTERNAL,
+            type: this.#ERROR_TYPE_INTERNAL,
             message: this.#isProduction() ? 'Something went wrong' : error.message
         }
     }
 
     #isValidationError(error) {
         const message = error.message.toLowerCase()
-        return ErrorClassifier.#VALIDATION_KEYWORDS.some(keyword => message.includes(keyword))
+        return this.#VALIDATION_KEYWORDS.some(keyword => message.includes(keyword))
     }
 
     #isNotFoundError(error) {
         const message = error.message.toLowerCase()
-        return message.includes(ErrorClassifier.#NOT_FOUND_KEYWORD)
+        return message.includes(this.#NOT_FOUND_KEYWORD)
     }
 
     #isProduction() {
@@ -123,7 +125,7 @@ class ErrorClassifier {
 class ErrorResponder {
     /**
      * Sends error response.
-     * 
+     *
      * @param {object} res - Express response object
      * @param {object} errorResponse - Error response object
      */

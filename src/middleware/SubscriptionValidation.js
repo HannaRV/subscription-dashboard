@@ -19,9 +19,8 @@ export class SubscriptionValidation {
      * @param {Function} next - Express next middleware function
      */
     validateNewSubscription(req, res, next) {
-
         try {
-            const validator = new DataFieldValidator(req.body)
+            const validator = new SubscriptionFieldValidator(req.body)
             validator.validate()
             req.body = validator.getSanitizedData()
             next()
@@ -33,6 +32,13 @@ export class SubscriptionValidation {
         }
     }
 
+    /**
+     * Validates subscription name from URL parameter.
+     * 
+     * @param {object} req - Express request object
+     * @param {object} res - Express response object
+     * @param {Function} next - Express next middleware function
+     */
     validateSubscriptionName(req, res, next) {
         try {
             const name = req.params.name
@@ -54,25 +60,26 @@ export class SubscriptionValidation {
 /**
  * Validates individual subscription data fields.
  */
-class DataFieldValidator {
-    /**
-     * Creates a new field validator.
-     * 
-     * @param {object} data - Data object to validate
-     */
+class SubscriptionFieldValidator {
     static #MAX_NAME_LENGTH = 20
     static #MAX_CATEGORY_LENGTH = 20
     static #VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
 
     #data
 
+    /**
+     * Creates a new field validator.
+     * 
+     * @param {object} data - Data object to validate
+     */
     constructor(data) {
         this.#data = data
     }
+
+    /**
+     * Validates all fields.
+     */
     validate() {
-        /**
-         * Validates all fields.
-         */
         this.#validateName()
         this.#validatePrice()
         this.#validateFrequency()
@@ -108,8 +115,8 @@ class DataFieldValidator {
             throw new Error('Name cannot be empty')
         }
 
-        if (name.length > DataFieldValidator.#MAX_NAME_LENGTH) {
-            throw new Error(`Name cannot exceed ${DataFieldValidator.#MAX_NAME_LENGTH} characters`)
+        if (name.length > SubscriptionFieldValidator.#MAX_NAME_LENGTH) {
+            throw new Error(`Name cannot exceed ${SubscriptionFieldValidator.#MAX_NAME_LENGTH} characters`)
         }
     }
 
@@ -128,7 +135,7 @@ class DataFieldValidator {
     #validateFrequency() {
         const { frequency } = this.#data
 
-        if (!frequency || !DataFieldValidator.#VALID_FREQUENCIES.includes(frequency)) {
+        if (!frequency || !SubscriptionFieldValidator.#VALID_FREQUENCIES.includes(frequency)) {
             throw new Error('Frequency must be weekly, monthly, or yearly')
         }
     }
@@ -148,8 +155,8 @@ class DataFieldValidator {
             throw new Error('Category cannot be empty')
         }
 
-        if (category.length > DataFieldValidator.#MAX_CATEGORY_LENGTH) {
-            throw new Error(`Category cannot exceed ${DataFieldValidator.#MAX_CATEGORY_LENGTH} characters`)
+        if (category.length > SubscriptionFieldValidator.#MAX_CATEGORY_LENGTH) {
+            throw new Error(`Category cannot exceed ${SubscriptionFieldValidator.#MAX_CATEGORY_LENGTH} characters`)
         }
     }
 }
