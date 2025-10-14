@@ -15,6 +15,7 @@ import { SubscriptionValidation } from '../middleware/SubscriptionValidation.js'
 export class SubscriptionRouter {
     #router
     #subscriptionController
+    #validator
 
     /**
      * Creates and configures the subscription router.
@@ -22,6 +23,7 @@ export class SubscriptionRouter {
     constructor() {
         this.#router = express.Router()
         this.#subscriptionController = new SubscriptionController()
+        this.#validator = new SubscriptionValidation()
         this.#configureRoutes()
     }
 
@@ -39,12 +41,12 @@ export class SubscriptionRouter {
 
         // Add subscription
         this.#router.post('/add',
-            SubscriptionValidation.validateNewSubscription,
+            (req, res, next) => this.#validator.validateNewSubscription(req, res, next),
             (req, res) => this.#subscriptionController.addSubscription(req, res))
 
         // Remove subscription by name
         this.#router.post('/remove/:name',
-            SubscriptionValidation.validateSubscriptionName,
+            (req, res, next) => this.#validator.validateSubscriptionName(req, res, next),
             (req, res) => this.#subscriptionController.removeSubscription(req, res))
     }
 

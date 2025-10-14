@@ -11,6 +11,16 @@ import { HTTP_STATUS } from '../config/httpStatus.js'
  * Main error handler for the application.
  */
 export class ErrorHandler {
+    #logger
+    #classifier
+    #responder
+
+    constructor() {
+        this.#logger = new ErrorLogger()
+        this.#classifier = new ErrorClassifier()
+        this.#responder = new ErrorResponder()
+    }
+
     /**
      * Handles all application errors.
      * 
@@ -19,10 +29,10 @@ export class ErrorHandler {
      * @param {object} res - Express response object
      * @param {Function} next - Express next middleware function
      */
-    static handle(error, req, res, next) {
-        ErrorLogger.log(error, req)
-        const errorResponse = ErrorClassifier.classify(error)
-        ErrorResponder.respond(res, errorResponse)
+    handle(error, req, res, next) {
+        this.#logger.log(error, req)
+        const errorResponse = this.#classifier.classify(error)
+        this.#responder.respond(res, errorResponse)
     }
 }
 
@@ -36,7 +46,7 @@ class ErrorLogger {
      * @param {Error} error - Error object
      * @param {object} req - Express request object
      */
-    static log(error, req) {
+    log(error, req) {
         console.error('Error occurred:', {
             message: error.message,
             stack: this.#isDevelopment() ? error.stack : undefined,
@@ -46,7 +56,7 @@ class ErrorLogger {
         })
     }
 
-    static #isDevelopment() {
+    #isDevelopment() {
         return process.env.NODE_ENV === 'development'
     }
 }
@@ -55,12 +65,6 @@ class ErrorLogger {
  * Classifies errors into appropriate HTTP responses.
  */
 class ErrorClassifier {
-    /**
-   * Classifies an error and returns appropriate response.
-   * 
-   * @param {Error} error - Error object
-   * @returns {object} Error response object with status, type, and message
-   */
     static #ERROR_TYPE_VALIDATION = 'Validation Error'
     static #ERROR_TYPE_NOT_FOUND = 'Not Found'
     static #ERROR_TYPE_INTERNAL = 'Internal Server Error'
@@ -68,11 +72,17 @@ class ErrorClassifier {
     static #VALIDATION_KEYWORDS = ['must be', 'cannot be', 'is required', 'invalid']
     static #NOT_FOUND_KEYWORD = 'not found'
 
-    static classify(error) {
+    /**
+     * Classifies an error and returns appropriate response.
+     * 
+     * @param {Error} error - Error object
+     * @returns {object} Error response object with status, type, and message
+     */
+    classify(error) {
         if (this.#isValidationError(error)) {
             return {
                 status: HTTP_STATUS.BAD_REQUEST,
-                type: this.#ERROR_TYPE_VALIDATION,
+                type: ErrorClassifier.#ERROR_TYPE_VALIDATION,
                 message: error.message
             }
         }
@@ -80,29 +90,29 @@ class ErrorClassifier {
         if (this.#isNotFoundError(error)) {
             return {
                 status: HTTP_STATUS.NOT_FOUND,
-                type: this.#ERROR_TYPE_NOT_FOUND,
+                type: ErrorClassifier.#ERROR_TYPE_NOT_FOUND,
                 message: error.message
             }
         }
 
         return {
             status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
-            type: this.#ERROR_TYPE_INTERNAL,
+            type: ErrorClassifier.#ERROR_TYPE_INTERNAL,
             message: this.#isProduction() ? 'Something went wrong' : error.message
         }
     }
 
-    static #isValidationError(error) {
+    #isValidationError(error) {
         const message = error.message.toLowerCase()
-        return this.#VALIDATION_KEYWORDS.some(keyword => message.includes(keyword))
+        return ErrorClassifier.#VALIDATION_KEYWORDS.some(keyword => message.includes(keyword))
     }
 
-    static #isNotFoundError(error) {
+    #isNotFoundError(error) {
         const message = error.message.toLowerCase()
-        return error.message.toLowerCase().includes(this.#NOT_FOUND_KEYWORD)
+        return message.includes(ErrorClassifier.#NOT_FOUND_KEYWORD)
     }
 
-    static #isProduction() {
+    #isProduction() {
         return process.env.NODE_ENV === 'production'
     }
 }
@@ -117,7 +127,7 @@ class ErrorResponder {
      * @param {object} res - Express response object
      * @param {object} errorResponse - Error response object
      */
-    static respond(res, errorResponse) {
+    respond(res, errorResponse) {
         res.status(errorResponse.status).json({
             error: errorResponse.type,
             message: errorResponse.message

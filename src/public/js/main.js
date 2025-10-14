@@ -51,7 +51,7 @@ class SubscriptionElementFactory {
         * @param {Object} subscription - Subscription data
         * @returns {HTMLElement} Subscription element
         */
-    static createSubscriptionElement(subscription) {
+    createSubscriptionElement(subscription) {
         const containerDiv = document.createElement('div')
         containerDiv.className = CSS_CLASSES.SUBSCRIPTION_ITEM
 
@@ -72,7 +72,7 @@ class SubscriptionElementFactory {
      * @param {Object} subscription - Subscription data
      * @returns {HTMLElement} Info element
      */
-    static createInfoSection(subscription) {
+    createInfoSection(subscription) {
         const infoDiv = document.createElement('div')
         infoDiv.className = CSS_CLASSES.SUBSCRIPTION_INFO
 
@@ -96,7 +96,7 @@ class SubscriptionElementFactory {
      * @param {number} price - Price amount
      * @returns {HTMLElement} Price element
      */
-    static createPriceElement(price) {
+    createPriceElement(price) {
         const priceDiv = document.createElement('div')
         priceDiv.className = CSS_CLASSES.SUBSCRIPTION_PRICE
         priceDiv.textContent = `${price} kr`
@@ -109,7 +109,7 @@ class SubscriptionElementFactory {
      * @param {string} name - Subscription name
      * @returns {HTMLElement} Form with remove button
      */
-    static createRemoveForm(name) {
+    createRemoveForm(name) {
         const removeForm = document.createElement('form')
         removeForm.action = `${API_ENDPOINTS.REMOVE_SUBSCRIPTION}/${encodeURIComponent(name)}`
         removeForm.method = 'POST'
@@ -129,7 +129,7 @@ class SubscriptionElementFactory {
      * 
      * @returns {HTMLElement} Empty state element
      */
-    static createEmptyState() {
+    createEmptyState() {
         const emptyDiv = document.createElement('div')
         emptyDiv.className = CSS_CLASSES.EMPTY_STATE
         emptyDiv.textContent = USER_MESSAGES.EMPTY_STATE
@@ -142,7 +142,7 @@ class SubscriptionElementFactory {
      * @param {string} message - Error message
      * @returns {HTMLElement} Error element
      */
-    static createErrorElement(message) {
+    createErrorElement(message) {
         const errorDiv = document.createElement('div')
         errorDiv.className = CSS_CLASSES.EMPTY_STATE
         errorDiv.classList.add('error')
@@ -157,6 +157,7 @@ class SubscriptionElementFactory {
 class SubscriptionView {
     #listContainer
     #totalCostElement
+    #elementFactory
 
     /**
      * Creates a new subscription view.
@@ -170,6 +171,7 @@ class SubscriptionView {
 
         this.#listContainer = document.getElementById(LIST_CONTAINER_ID)
         this.#totalCostElement = document.getElementById(TOTAL_COST_ID)
+        this.#elementFactory = new SubscriptionElementFactory()
     }
 
     /**
@@ -186,7 +188,7 @@ class SubscriptionView {
         }
 
         subscriptions.forEach(subscription => {
-            const element = SubscriptionElementFactory.createSubscriptionElement(subscription)
+            const element = this.#elementFactory.createSubscriptionElement(subscription)
             this.#listContainer.appendChild(element)
         })
     }
@@ -207,12 +209,12 @@ class SubscriptionView {
      */
     showError(message) {
         this.#clearContainer()
-        const errorDiv = SubscriptionElementFactory.createErrorElement(message)
+        const errorDiv = this.#elementFactory.createErrorElement(message)
         this.#listContainer.appendChild(errorDiv)
     }
 
     #showEmptyState() {
-        const emptyDiv = SubscriptionElementFactory.createEmptyState()
+        const emptyDiv = this.#elementFactory.createEmptyState()
         this.#listContainer.appendChild(emptyDiv)
     }
 

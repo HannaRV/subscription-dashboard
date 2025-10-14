@@ -15,12 +15,16 @@ import { SecurityHandler } from '../middleware/SecurityHandler.js'
  */
 export class WebServer {
     #expressApplication
+    #securityHandler
+    #errorHandler
 
     /**
      * Creates a new web server instance with all middleware configured.
      */
     constructor() {
         this.#expressApplication = express()
+        this.#securityHandler = new SecurityHandler()
+        this.#errorHandler = new ErrorHandler()
         this.#configureSecurityMiddleware()
         this.#configureBodyParsing()
         this.#configureStaticFiles()
@@ -29,14 +33,17 @@ export class WebServer {
     }
 
     #configureSecurityMiddleware() {
-        this.#expressApplication.use(SecurityHandler.applySecurityHeaders)
-        this.#expressApplication.use(SecurityHandler.rateLimit())
+        this.#expressApplication.use((req, res, next) => 
+            this.#securityHandler.applySecurityHeaders(req, res, next))
+        this.#expressApplication.use((req, res, next) => 
+            this.#securityHandler.rateLimit(req, res, next))
     }
 
     #configureBodyParsing() {
         this.#expressApplication.use(express.json())
         this.#expressApplication.use(express.urlencoded({ extended: true }))
-        this.#expressApplication.use(SecurityHandler.sanitizeInput)
+        this.#expressApplication.use((req, res, next) => 
+            this.#securityHandler.sanitizeInput(req, res, next))
     }
 
     #configureStaticFiles() {
@@ -49,7 +56,8 @@ export class WebServer {
     }
 
     #configureErrorHandling() {
-        this.#expressApplication.use(ErrorHandler.handle)
+        this.#expressApplication.use((error, req, res, next) => 
+            this.#errorHandler.handle(error, req, res, next))
     }
 
     /**

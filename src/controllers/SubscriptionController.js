@@ -41,7 +41,7 @@ export class SubscriptionController {
     */
     getSubscriptionsData(req, res) {
         try {
-            const subscriptions = this.#repository.getAllSubscriptions()
+            const subscriptions = this.#repository.getAllSubscriptionsAsPlainObjects()
             const totalCost = this.#repository.getTotalMonthlyCost()
 
             res.json({
@@ -87,7 +87,7 @@ export class SubscriptionController {
         try {
             const removed = this.#repository.removeSubscriptionByName(name)
             if (removed) {
-                res.redirect('/')  // ✅ Byt tillbaka till redirect
+                res.redirect('/')
             } else {
                 res.status(HTTP_STATUS.NOT_FOUND).json({
                     error: 'Not Found',

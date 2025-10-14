@@ -18,14 +18,8 @@ export class SubscriptionValidation {
      * @param {object} res - Express response object
      * @param {Function} next - Express next middleware function
      */
-    static validateNewSubscription(req, res, next) {
-        /**
-         * Validates subscription name from URL parameter.
-         * 
-         * @param {object} req - Express request object
-         * @param {object} res - Express response object
-         * @param {Function} next - Express next middleware function
-         */
+    validateNewSubscription(req, res, next) {
+
         try {
             const validator = new DataFieldValidator(req.body)
             validator.validate()
@@ -39,7 +33,7 @@ export class SubscriptionValidation {
         }
     }
 
-    static validateSubscriptionName(req, res, next) {
+    validateSubscriptionName(req, res, next) {
         try {
             const name = req.params.name
 

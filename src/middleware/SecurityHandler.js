@@ -11,6 +11,14 @@ import { HTTP_STATUS } from '../config/httpStatus.js'
  * Handles application security middleware.
  */
 export class SecurityHandler {
+    #rateLimiter
+    #inputSanitizer
+
+    constructor() {
+        this.#rateLimiter = new RateLimiter()
+        this.#inputSanitizer = new InputSanitizer()
+    }
+
     /**
      * Applies security headers to response.
      * 
@@ -18,19 +26,20 @@ export class SecurityHandler {
      * @param {object} res - Express response object
      * @param {Function} next - Express next middleware function
      */
-    static applySecurityHeaders(req, res, next) {
+    applySecurityHeaders(req, res, next) {
         SecurityHeaders.apply(res)
         next()
     }
 
     /**
-     * Creates rate limiting middleware.
+     * Rate limiting middleware.
      * 
-     * @returns {Function} Rate limiting middleware function
+     * @param {object} req - Express request object
+     * @param {object} res - Express response object
+     * @param {Function} next - Express next middleware function
      */
-    static rateLimit() {
-        const limiter = new RateLimiter()
-        return (req, res, next) => limiter.check(req, res, next)
+    rateLimit(req, res, next) {
+        this.#rateLimiter.check(req, res, next)
     }
 
     /**
@@ -40,9 +49,9 @@ export class SecurityHandler {
      * @param {object} res - Express response object
      * @param {Function} next - Express next middleware function
      */
-    static sanitizeInput(req, res, next) {
+    sanitizeInput(req, res, next) {
         try {
-            InputSanitizer.sanitize(req)
+            this.#inputSanitizer.sanitize(req)
             next()
         } catch (error) {
             next(error)
@@ -73,6 +82,12 @@ class SecurityHeaders {
  * Implements rate limiting per client IP.
  */
 class RateLimiter {
+    static #ONE_MINUTE_MS = 60000
+    static #MAX_REQUESTS_PER_MINUTE = 100
+    static #CLEANUP_PROBABILITY = 0.01
+
+    #requests = new Map()
+
     /**
      * Checks if client has exceeded rate limit.
      * 
@@ -80,12 +95,6 @@ class RateLimiter {
      * @param {object} res - Express response object
      * @param {Function} next - Express next middleware function
      */
-    static #ONE_MINUTE_MS = 60000
-    static #MAX_REQUESTS_PER_MINUTE = 100
-    static #CLEANUP_PROBABILITY = 0.01
-
-    #requests = new Map()
-
     check(req, res, next) {
         const clientIp = req.ip
         const now = Date.now()
@@ -162,7 +171,7 @@ class InputSanitizer {
      * 
      * @param {object} req - Express request object
      */
-    static sanitize(req) {
+    sanitize(req) {
         if (!req.body) return
 
         for (let key in req.body) {
@@ -172,15 +181,15 @@ class InputSanitizer {
         }
     }
 
-    static #isString(value) {
+    #isString(value) {
         return typeof value === 'string'
     }
 
-    static #sanitizeString(str) {
+    #sanitizeString(str) {
         return this.#removeHtmlTags(str).trim()
     }
 
-    static #removeHtmlTags(str) {
+    #removeHtmlTags(str) {
         return str
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;')

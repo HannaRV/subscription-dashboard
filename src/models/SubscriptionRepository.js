@@ -42,7 +42,7 @@ export class SubscriptionRepository {
      * 
      * @returns {Array} Array of subscription objects
      */
-    getAllSubscriptions() {
+    getAllSubscriptionsAsPlainObjects() {
         const subscriptions = this.#collection.getAllSubscriptions()
 
         // Convert Subscription objects to plain objects for JSON
