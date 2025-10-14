@@ -87,7 +87,7 @@ export class SubscriptionController {
         try {
             const removed = this.#repository.removeSubscriptionByName(name)
             if (removed) {
-                res.redirect('/')
+                res.redirect('/')  // ✅ Byt tillbaka till redirect
             } else {
                 res.status(HTTP_STATUS.NOT_FOUND).json({
                     error: 'Not Found',
@@ -102,3 +102,4 @@ export class SubscriptionController {
         }
     }
 }
+

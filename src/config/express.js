@@ -32,8 +32,8 @@ export class WebServer {
      * Configures Express middleware for parsing requests.
      */
     #configureSecurityMiddleware() {
-        this.#expressApplication.use(SecurityHandler.applySecurityHeaders)
-        this.#expressApplication.use(SecurityHandler.rateLimit())
+       this.#expressApplication.use(SecurityHandler.applySecurityHeaders)
+       this.#expressApplication.use(SecurityHandler.rateLimit())
     }
 
     #configureBodyParsing() {
@@ -41,6 +41,7 @@ export class WebServer {
         this.#expressApplication.use(express.urlencoded({ extended: true }))
         this.#expressApplication.use(SecurityHandler.sanitizeInput)
     }
+    
     /**
      * Configures static file serving from public directory.
      */
