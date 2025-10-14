@@ -7,6 +7,8 @@
 
 import express from 'express'
 import { SubscriptionRouter } from '../routes/SubscriptionRouter.js'
+import { ErrorHandler } from '../middleware/ErrorHandler.js'
+import { SecurityHandler } from '../middleware/SecurityHandler.js'
 
 /**
  * Represents the web server with Express configuration.
@@ -19,17 +21,25 @@ export class WebServer {
      */
     constructor() {
         this.#expressApplication = express()
-        this.#configureMiddleware()
+        this.#configureSecurityMiddleware()
+        this.#configureBodyParsing()
         this.#configureStaticFiles()
         this.#configureRoutes()
+        this.#configureErrorHandling()
     }
 
     /**
      * Configures Express middleware for parsing requests.
      */
-    #configureMiddleware() {
+    #configureSecurityMiddleware() {
+        this.#expressApplication.use(SecurityHandler.applySecurityHeaders)
+        this.#expressApplication.use(SecurityHandler.rateLimit())
+    }
+
+    #configureBodyParsing() {
         this.#expressApplication.use(express.json())
         this.#expressApplication.use(express.urlencoded({ extended: true }))
+        this.#expressApplication.use(SecurityHandler.sanitizeInput)
     }
     /**
      * Configures static file serving from public directory.
@@ -44,6 +54,10 @@ export class WebServer {
     #configureRoutes() {
         const subscriptionRouter = new SubscriptionRouter()
         this.#expressApplication.use('/', subscriptionRouter.getRouter())
+    }
+
+    #configureErrorHandling() {
+        this.#expressApplication.use(ErrorHandler.handle)
     }
 
     /**
