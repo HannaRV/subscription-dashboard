@@ -23,7 +23,9 @@
   },
   "homepage": "https://github.com/HannaRV/subscription-dashboard#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
