@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-import { Subscription, SubscriptionCollection, CostCalculator } from 'subscription-tracker'
+import { Subscription, SubscriptionCollection, CostCalculator } from '@hr222sy/subscription-tracker'
 
 /**
  * Manages subscription data through the subscription-tracker module.
