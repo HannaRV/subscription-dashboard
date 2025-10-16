@@ -196,7 +196,7 @@ class SubscriptionView {
      * @param {number} cost - Total monthly cost
      */
     updateTotalCost(cost) {
-        this.#totalCostElement.textContent = cost
+        this.#totalCostElement.textContent = cost.toFixed(2)
     }
 
     /**
@@ -241,7 +241,7 @@ class SubscriptionApp {
         try {
             const data = await this.#api.fetchSubscriptions()
             this.#view.renderSubscriptions(data.subscriptions)
-            this.#view.updateTotalCost(data.totalMonthlyCost)
+            this.#view.updateTotalCost(data.totalCost)
         } catch (error) {
             console.error('Failed to initialize app:', error)
             this.#view.showError(error.message)

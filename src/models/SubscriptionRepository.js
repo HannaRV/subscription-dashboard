@@ -13,6 +13,7 @@ import { Subscription, SubscriptionCollection, CostCalculator } from '@hr222sy/s
 export class SubscriptionRepository {
     #collection
     #costCalculator
+    #frequencyCalculators
 
     /**
      * Creates a new subscription repository with empty collection.
@@ -20,6 +21,22 @@ export class SubscriptionRepository {
     constructor() {
         this.#collection = new SubscriptionCollection()
         this.#costCalculator = new CostCalculator()
+
+        // Map frequencies to calculator methods
+        this.#frequencyCalculators = {
+            weekly: {
+                single: (subscription) => this.#costCalculator.calculateWeeklyCost(subscription),
+                total: (subscriptions) => this.#costCalculator.calculateTotalWeeklyCost(subscriptions)
+            },
+            monthly: {
+                single: (subscription) => this.#costCalculator.calculateMonthlyCost(subscription),
+                total: (subscriptions) => this.#costCalculator.calculateTotalMonthlyCost(subscriptions)
+            },
+            yearly: {
+                single: (subscription) => this.#costCalculator.calculateYearlyCost(subscription),
+                total: (subscriptions) => this.#costCalculator.calculateTotalYearlyCost(subscriptions)
+            }
+        }
     }
 
     /**
@@ -42,15 +59,16 @@ export class SubscriptionRepository {
      * 
      * @returns {Array} Array of subscription objects
      */
-    getAllSubscriptionsAsPlainObjects() {
+    getAllSubscriptionsAsPlainObjects(viewFrequency = 'monthly') {
         const subscriptions = this.#collection.getAllSubscriptions()
+        const calculator = this.#getCalculatorForFrequency(viewFrequency)
 
-        // Convert Subscription objects to plain objects for JSON
-        return subscriptions.map(sub => ({
-            name: sub.getName(),
-            price: sub.getPrice(),
-            frequency: sub.getFrequency(),
-            category: sub.getCategory()
+        return subscriptions.map(subscription => ({
+            name: subscription.getName(),
+            originalPrice: subscription.getPrice(),
+            originalFrequency: subscription.getFrequency(),
+            category: subscription.getCategory(),
+            displayCost: calculator.single(subscription)
         }))
     }
 
@@ -69,12 +87,16 @@ export class SubscriptionRepository {
     }
 
     /**
-     * Gets total monthly cost of all active subscriptions.
-     * 
-     * @returns {number} Total monthly cost
+     * Gets total cost of all active subscriptions in specified frequency.
+     *
+     * @param {string} viewFrequency - Frequency to calculate total (weekly, monthly, yearly)
+     * @returns {number} Total cost in specified frequency
      */
-    getTotalMonthlyCost() {
-        return this.#costCalculator.calculateTotalMonthlyCost(this.#collection.getAllSubscriptions())
+    getTotalCost(viewFrequency = 'monthly') {
+        const subscriptions = this.#collection.getAllSubscriptions()
+        const calculator = this.#getCalculatorForFrequency(viewFrequency)
+
+        return calculator.total(subscriptions)
     }
 
     /**
@@ -86,5 +108,21 @@ export class SubscriptionRepository {
     #findSubscriptionByName(name) {
         const subscriptions = this.#collection.getAllSubscriptions()
         return subscriptions.find(subscription => subscription.getName() === name)
+    }
+
+    /**
+     * Gets calculator for specified frequency.
+     *
+     * @param {string} viewFrequency - Frequency to view (weekly, monthly, yearly)
+     * @returns {object} Calculator with single and total methods
+     */
+    #getCalculatorForFrequency(viewFrequency) {
+        const calculator = this.#frequencyCalculators[viewFrequency]
+
+        if (!calculator) {
+            return this.#frequencyCalculators.monthly
+        }
+
+        return calculator
     }
 }

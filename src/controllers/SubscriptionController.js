@@ -41,12 +41,15 @@ export class SubscriptionController {
      */
     getSubscriptionsData(req, res) {
         try {
-            const subscriptions = this.#repository.getAllSubscriptionsAsPlainObjects()
-            const totalMonthlyCost = this.#repository.getTotalMonthlyCost()
+            const viewFrequency = req.query.view || 'monthly'
+
+            const subscriptions = this.#repository.getAllSubscriptionsAsPlainObjects(viewFrequency)
+            const totalCost = this.#repository.getTotalCost(viewFrequency)
 
             res.json({
                 subscriptions,
-                totalMonthlyCost
+                totalCost,
+                viewFrequency
             })
         } catch (error) {
             res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
