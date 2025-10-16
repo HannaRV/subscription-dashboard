@@ -93,41 +93,54 @@ Subscription Dashboard aims to deliver:
    - View all subscriptions in one place
 
 2. **Automatic Cost Calculation**
-   - Total monthly cost calculation
+   - Total cost calculation in multiple frequencies
    - Converts between weekly/monthly/yearly frequencies
    - Real-time updates
 
-3. **Clean Interface**
+3. **Frequency Toggle**
+   - View all subscriptions in weekly, monthly, or yearly cost
+   - See both display cost and original billing frequency
+   - Dynamic total cost updates based on selected view
+   - Helps users understand subscription value across different timeframes
+
+4. **Clean Interface**
    - Minimal learning curve
    - Mobile-responsive design
    - Quick overview of spending
 
-4. **Security**
+5. **Security**
    - Input validation and sanitization
    - Rate limiting
    - Security headers (helmet)
 
 ### Future Enhancements (Post-MVP)
-1. **Usage Analytics**
+1. **Edit Subscription**
+   - Modify existing subscription details
+   - Update price, frequency, or category
+   - Currently requires delete + re-add
+
+2. **Usage Analytics**
    - Identify unused subscriptions (0 usage hours)
    - Calculate cost per hour of use
    - Find underutilized services
 
-2. **Category Breakdown**
+3. **Category Breakdown**
    - See spending by category (streaming, software, fitness)
+   - Visual breakdown with charts
    - Compare categories
-   - Identify overspending areas
 
-3. **Data Persistence**
+4. **Data Persistence**
    - User accounts
    - Save subscriptions between sessions
    - Cloud backup
 
-4. **Advanced Features**
+5. **Advanced Features**
+   - Search and filter subscriptions
+   - Sort by price, name, or category
    - Subscription reminders
    - Spending trends over time
    - Export to PDF
-
+   
 ### Unique Selling Points
 - **Swedish-focused** - Built for Swedish market with SEK currency
 - **Privacy-first** - No bank account connection required
