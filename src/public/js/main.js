@@ -20,12 +20,13 @@ class SubscriptionAPI {
     /**
      * Fetches all subscriptions from the server.
      * 
+     * @param {string} viewFrequency - Frequency to view costs (weekly, monthly, yearly)
      * @returns {Promise<Object>} Subscription data with subscriptions array and total cost
      * @throws {Error} If fetch fails or network error occurs
      */
-    async fetchSubscriptions() {
+    async fetchSubscriptions(viewFrequency = 'monthly') {
         try {
-            const response = await fetch(this.#baseUrl)
+            const response = await fetch(`${this.#baseUrl}?view=${viewFrequency}`)
 
             if (!response.ok) {
                 throw new Error(`${USER_MESSAGES.FETCH_ERROR}: ${response.status}`)
@@ -51,12 +52,12 @@ class SubscriptionElementFactory {
      * @param {Object} subscription - Subscription data
      * @returns {HTMLElement} Subscription element
      */
-    createSubscriptionElement(subscription) {
+    createSubscriptionElement(subscription, viewFrequency) {
         const containerDiv = document.createElement('div')
         containerDiv.className = CSS_CLASSES.SUBSCRIPTION_ITEM
 
         const infoSection = this.createInfoSection(subscription)
-        const priceDiv = this.createPriceElement(subscription.price)
+        const priceDiv = this.createPriceElement(subscription.displayCost, viewFrequency)
         const removeForm = this.createRemoveForm(subscription.name)
 
         containerDiv.appendChild(infoSection)
@@ -82,7 +83,7 @@ class SubscriptionElementFactory {
 
         const detailsDiv = document.createElement('div')
         detailsDiv.className = CSS_CLASSES.SUBSCRIPTION_DETAILS
-        detailsDiv.textContent = `${subscription.category} • ${subscription.frequency}`
+        detailsDiv.textContent = `${subscription.category} • ${subscription.originalFrequency} • ${subscription.originalPrice}kr`
 
         infoDiv.appendChild(nameDiv)
         infoDiv.appendChild(detailsDiv)
@@ -93,13 +94,14 @@ class SubscriptionElementFactory {
     /**
      * Creates price display element.
      * 
-     * @param {number} price - Price amount
+     * @param {number} displayCost - Cost to display
+     * @param {string} viewFrequency - Frequency label (weekly, monthly, yearly)
      * @returns {HTMLElement} Price element
      */
-    createPriceElement(price) {
+    createPriceElement(displayCost, viewFrequency) {
         const priceDiv = document.createElement('div')
         priceDiv.className = CSS_CLASSES.SUBSCRIPTION_PRICE
-        priceDiv.textContent = `${price} kr`
+        priceDiv.textContent = `${displayCost.toFixed(2)} kr/${viewFrequency}`
         return priceDiv
     }
 
@@ -156,7 +158,7 @@ class SubscriptionElementFactory {
  */
 class SubscriptionView {
     #listContainer
-    #totalCostElement
+    #totalCostDisplay
     #elementFactory
 
     /**
@@ -164,10 +166,10 @@ class SubscriptionView {
      */
     constructor() {
         const LIST_CONTAINER_ID = 'subscriptions-list'
-        const TOTAL_COST_ID = 'total-cost'
+        const TOTAL_COST_DISPLAY_ID = 'total-cost-display'
 
         this.#listContainer = document.getElementById(LIST_CONTAINER_ID)
-        this.#totalCostElement = document.getElementById(TOTAL_COST_ID)
+        this.#totalCostDisplay = document.getElementById(TOTAL_COST_DISPLAY_ID)
         this.#elementFactory = new SubscriptionElementFactory()
     }
 
@@ -175,8 +177,9 @@ class SubscriptionView {
      * Renders subscription list.
      * 
      * @param {Array} subscriptions - Array of subscription objects
+     * @param {string} viewFrequency - Frequency to display
      */
-    renderSubscriptions(subscriptions) {
+    renderSubscriptions(subscriptions, viewFrequency) {
         this.#clearContainer()
 
         if (subscriptions.length === 0) {
@@ -185,7 +188,7 @@ class SubscriptionView {
         }
 
         subscriptions.forEach(subscription => {
-            const element = this.#elementFactory.createSubscriptionElement(subscription)
+            const element = this.#elementFactory.createSubscriptionElement(subscription, viewFrequency)
             this.#listContainer.appendChild(element)
         })
     }
@@ -193,10 +196,11 @@ class SubscriptionView {
     /**
      * Updates total cost display.
      * 
-     * @param {number} cost - Total monthly cost
+     * @param {number} cost - Total cost
+     * @param {string} viewFrequency - Frequency view (weekly, monthly, yearly)
      */
-    updateTotalCost(cost) {
-        this.#totalCostElement.textContent = cost.toFixed(2)
+    updateTotalCost(cost, viewFrequency) {
+        this.#totalCostDisplay.textContent = `Total ${viewFrequency} cost: ${cost.toFixed(2)} kr`
     }
 
     /**
@@ -235,15 +239,36 @@ class SubscriptionApp {
     }
 
     /**
-     * Initializes the application by loading subscriptions.
+     * Initializes the application by loading subscriptions and setting up event listeners.
      */
     async initialize() {
         try {
-            const data = await this.#api.fetchSubscriptions()
-            this.#view.renderSubscriptions(data.subscriptions)
-            this.#view.updateTotalCost(data.totalCost)
+            await this.loadSubscriptions('monthly')
+            
+            const frequencySelect = document.getElementById('view-frequency')
+            if (frequencySelect) {
+                frequencySelect.addEventListener('change', async (event) => {
+                    await this.loadSubscriptions(event.target.value)
+                })
+            }
         } catch (error) {
             console.error('Failed to initialize app:', error)
+            this.#view.showError(error.message)
+        }
+    }
+
+    /**
+     * Loads and displays subscriptions for specified frequency.
+     * 
+     * @param {string} viewFrequency - Frequency to view (weekly, monthly, yearly)
+     */
+    async loadSubscriptions(viewFrequency) {
+        try {
+            const data = await this.#api.fetchSubscriptions(viewFrequency)
+            this.#view.renderSubscriptions(data.subscriptions, data.viewFrequency)
+            this.#view.updateTotalCost(data.totalCost, data.viewFrequency)
+        } catch (error) {
+            console.error('Failed to load subscriptions:', error)
             this.#view.showError(error.message)
         }
     }

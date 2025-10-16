@@ -193,6 +193,37 @@ h2 {
     color: #b83f32;
 }
 
+/* View Controls (Frequency Dropdown) */
+.view-controls {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.view-controls label {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.view-controls select {
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--card);
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.view-controls select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(90, 108, 125, 0.1);
+}
+
 @media (max-width: 768px) {
     .subscription-item {
         flex-direction: column;
@@ -206,5 +237,10 @@ h2 {
 
     header h1 {
         font-size: 1.5rem;
+    }
+
+    .view-controls {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
