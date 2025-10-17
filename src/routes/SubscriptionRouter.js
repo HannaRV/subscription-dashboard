@@ -19,11 +19,17 @@ export class SubscriptionRouter {
 
     /**
      * Creates and configures the subscription router.
+     * 
+     * @param {SubscriptionController} subscriptionController - Controller instance (optional, creates new if not provided)
+     * @param {SubscriptionValidation} validator - Validator instance (optional, creates new if not provided)
      */
-    constructor() {
+    constructor(
+        subscriptionController = new SubscriptionController(),
+        validator = new SubscriptionValidation()
+    ) {
         this.#router = express.Router()
-        this.#subscriptionController = new SubscriptionController()
-        this.#validator = new SubscriptionValidation()
+        this.#subscriptionController = subscriptionController
+        this.#validator = validator
         this.#configureRoutes()
     }
 
