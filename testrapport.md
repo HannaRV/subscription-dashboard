@@ -556,9 +556,9 @@ Detta dokument innehåller detaljerade testfall för Subscription Dashboard MVP.
 |----------|--------------|--------|
 | Prenumerationshantering | 4 | ✅ |
 | Kostnadsberäkning | 3 | ✅ |
-| Felhantering | 7 | ✅ |
+| Felhantering | 8 | ✅ |
 | Edge cases | 5 | ✅ |
-| **TOTALT** | **19** | **✅** |
+| **TOTALT** | **20** | **✅** |
 
 **Success Rate:** 100%  
 **Kritiska buggar:** 0  
