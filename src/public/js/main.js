@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-import { API_ENDPOINTS, CSS_CLASSES, USER_MESSAGES } from './config.js'
+import { API_ENDPOINTS, CSS_CLASSES, USER_MESSAGES, DEFAULT_VIEW_FREQUENCY } from './config.js'
 
 /**
  * Handles API communication for subscriptions.
@@ -24,7 +24,7 @@ class SubscriptionAPI {
      * @returns {Promise<Object>} Subscription data with subscriptions array and total cost
      * @throws {Error} If fetch fails or network error occurs
      */
-    async fetchSubscriptions(viewFrequency = 'monthly') {
+    async fetchSubscriptions(viewFrequency = DEFAULT_VIEW_FREQUENCY) {
         try {
             const response = await fetch(`${this.#baseUrl}?view=${viewFrequency}`)
 
@@ -243,7 +243,7 @@ class SubscriptionApp {
      */
     async initialize() {
         try {
-            await this.loadSubscriptions('monthly')
+            await this.loadSubscriptions(DEFAULT_VIEW_FREQUENCY)
             
             const frequencySelect = document.getElementById('view-frequency')
             if (frequencySelect) {

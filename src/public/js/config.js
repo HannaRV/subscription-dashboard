@@ -38,3 +38,14 @@ export const USER_MESSAGES = {
     NETWORK_ERROR: 'Network error. Please check your connection.',
     FETCH_ERROR: 'Failed to fetch subscriptions'
 }
+
+/**
+ * View frequency options.
+ */
+export const VIEW_FREQUENCY = {
+    WEEKLY: 'weekly',
+    MONTHLY: 'monthly',
+    YEARLY: 'yearly'
+}
+
+export const DEFAULT_VIEW_FREQUENCY = VIEW_FREQUENCY.MONTHLY
