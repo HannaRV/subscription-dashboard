@@ -202,7 +202,6 @@ this.#frequencyCalculators = {
 ---
 
 ## Resources
-
-- Clean Code by Robert C. Martin
 - npm module: [@hr222sy/subscription-tracker](https://www.npmjs.com/package/@hr222sy/subscription-tracker)
 - Usage guide: [README.md](../README.md)
+- Clean Code by Robert C. Martin

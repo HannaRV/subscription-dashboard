@@ -57,9 +57,9 @@ export class SubscriptionValidation {
  * Validates individual subscription data fields.
  */
 class SubscriptionFieldValidator {
-    static #MAX_NAME_LENGTH = 20
-    static #MAX_CATEGORY_LENGTH = 20
-    static #VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
+    #MAX_NAME_LENGTH = 20
+    #MAX_CATEGORY_LENGTH = 20
+    #VALID_FREQUENCIES = ['weekly', 'monthly', 'yearly']
 
     #data
 
@@ -104,8 +104,8 @@ class SubscriptionFieldValidator {
             throw new Error('Name cannot be empty')
         }
 
-        if (name.length > SubscriptionFieldValidator.#MAX_NAME_LENGTH) {
-            throw new Error(`Name cannot exceed ${SubscriptionFieldValidator.#MAX_NAME_LENGTH} characters`)
+        if (name.length > this.#MAX_NAME_LENGTH) {
+            throw new Error(`Name cannot exceed ${this.#MAX_NAME_LENGTH} characters`)
         }
     }
 
@@ -124,7 +124,7 @@ class SubscriptionFieldValidator {
     #validateFrequency() {
         const { frequency } = this.#data
 
-        if (!frequency || !SubscriptionFieldValidator.#VALID_FREQUENCIES.includes(frequency)) {
+        if (!frequency || !this.#VALID_FREQUENCIES.includes(frequency)) {
             throw new Error('Frequency must be weekly, monthly, or yearly')
         }
     }
@@ -144,8 +144,8 @@ class SubscriptionFieldValidator {
             throw new Error('Category cannot be empty')
         }
 
-        if (category.length > SubscriptionFieldValidator.#MAX_CATEGORY_LENGTH) {
-            throw new Error(`Category cannot exceed ${SubscriptionFieldValidator.#MAX_CATEGORY_LENGTH} characters`)
+        if (category.length > this.#MAX_CATEGORY_LENGTH) {
+            throw new Error(`Category cannot exceed ${this.#MAX_CATEGORY_LENGTH} characters`)
         }
     }
 }

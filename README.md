@@ -20,28 +20,22 @@ A web application for managing and visualizing personal subscriptions. Get a cle
 Subscription Dashboard helps individuals take control of their subscription spending. Track all recurring costs in one place, identify unused services and make informed decisions about which subscriptions to keep.
 
 ### For Developers
-This project demonstrates Clean Code principles and object-oriented design in a full-stack application using a custom npm module. Use the [@hr222sy/subscription-tracker](https://www.npmjs.com/package/@hr222sy/subscription-tracker) module in your own projects, study the codebase or contribute improvements. See [DEVELOPER.md](docs/DEVELOPER.md) for details.
+This project demonstrates Clean Code principles and object-oriented design in a full-stack application using a custom npm module. Use the [@hr222sy/subscription-tracker](https://www.npmjs.com/package/@hr222sy/subscription-tracker) module in your own projects, study the codebase or contribute improvements. See [DEVELOPER.md](docs/DEVELOPER.md) for more details.
 
 ### For Educators
 Created as part of course 1dv610 at Linnaeus University, demonstrating code quality, maintainability, and software design patterns.
 
 
-## Screenshots
+## Screenshot
 
 <img src="docs/images/dashboard.png" alt="Dashboard Overview" width="400">
 *Main dashboard showing all subscriptions and total monthly cost*
 
 
-## Links
-
-- 📦 [npm module: @hr222sy/subscription-tracker](https://www.npmjs.com/package/@hr222sy/subscription-tracker)
-- 🐙 [GitHub repository](https://github.com/HannaRV/subscription-dashboard)
-
 ## Table of Contents
 - [Core Features](#core-features)
 - [Purpose](#purpose)
-- [Screenshots](#screenshots)
-- [Links](#links)
+- [Screenshot](#screenshot)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Known Limitations](#known-limitations-mvp)
