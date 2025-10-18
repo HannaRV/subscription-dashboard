@@ -35,7 +35,6 @@ perspektiv.
 
 ## Målgrupp
 
-### Primära användare
 **Individer från 18 års ålder** med flera digitala prenumerationer som vill:
 - Ta kontroll över sina utgifter
 - Identifiera och avsluta oanvända prenumerationer
@@ -110,7 +109,6 @@ Byggd med säkerhet i fokus, så du kan lita på att din information hanteras ko
 - Inget behov av bankkontokoppling
 
 ---
-
 
 ## Teknisk kontext
 

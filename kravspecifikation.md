@@ -51,6 +51,7 @@ I denna kravspecifikation används följande prefixsystem för att tydligt kateg
 **F1.2.3:** Systemet ska konvertera kostnader mellan frekvenser korrekt
 - **F1.2.3.1:** Konverteringar ska använda subscription-tracker modulens beräkningsmetoder
 - **F1.2.3.2:** Konverteringar ska använda genomsnittliga värden (4.33 veckor/månad, 52.18 veckor/år)
+
 **F1.2.3.3:** Alla kostnader ska visas med två decimaler precision
 
 ### 1.3 Felhantering och användarfeedback
@@ -76,8 +77,7 @@ I denna kravspecifikation används följande prefixsystem för att tydligt kateg
 **NF2.1.4:** Felmeddelanden ska vara användarvänliga och beskrivande  
 
 ### 2.2 Prestanda
-**NF2.2.1:** Systemet ska hantera flera prenumerationer utan 
-betydande prestandaförsämring
+**NF2.2.1:** Systemet ska hantera flera prenumerationer utan betydande prestandaförsämring
 **NF2.2.2:** Kostnadsberäkningar ska uppdateras responsivt vid ändringar  
 **NF2.2.3:** Generella responstider ska optimeras för användarvänlighet  
 
@@ -118,6 +118,7 @@ betydande prestandaförsämring
 - Backend: Node.js (≥20.6.0), Express 5
 - npm-modul: @hr222sy/subscription-tracker (version 1.0.0)
 - Säkerhet: helmet, express-rate-limit
+
 **O3.1.3:** Systemet ska följa en layered architecture med separation of concerns
 **O3.1.4:** Systemet ska driftsättas publikt
 
@@ -138,9 +139,9 @@ betydande prestandaförsämring
 
 ### 3.4 Koddokumentation
 
-**O3.4.1:** README.md ska innehålla vision, installation och användningsinstruktioner  
+**O3.4.1:** README.md ska innehålla installation och användningsinstruktioner  
 **O3.4.2:** Kravspecifikation ska dokumenteras  
-**O3.4.3:** Testrapport ska dokumenteras  
+**O3.4.3:** Testning ska dokumenteras (testspecifikation och testrapport)  
 **O3.4.4:** Reflektion över Clean Code kapitel 2-11 ska dokumenteras  
 
 ---
@@ -149,10 +150,9 @@ betydande prestandaförsämring
 
 ### 4.1 Akademiska krav
 
-**E4.1.1:** Projektet ska uppfylla 1dv610 L3-krav enligt kursbeskrivning  
-**E4.1.2:** All kod ska vara självskriven (ingen AI-generering, ingen kopiering)  
-**E4.1.3:** Modulen ska användas från npm (@hr222sy/subscription-tracker)  
-**E4.1.4:** Kod ska demonstrera Clean Code-principer och objektorienterad design  
+**E4.1.1:** Projektet ska uppfylla 1dv610 L3-krav enligt kursbeskrivning   
+**E4.1.2:** Modulen ska användas från npm (@hr222sy/subscription-tracker)  
+**E4.1.3:** Kod ska demonstrera Clean Code-principer och objektorienterad design  
 
 ### 4.2 Etiska krav
 
@@ -164,3 +164,4 @@ betydande prestandaförsämring
 
 **E4.3.1:** HTML ska vara semantiskt korrekt  
 **E4.3.2:** Säkerhetsåtgärder ska följa grundläggande OWASP-riktlinjer
+

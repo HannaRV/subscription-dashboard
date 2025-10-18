@@ -626,4 +626,4 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 
 ---
 
-**Kända begränsningar (medvetna val):** Se [vision.md](vision.md#omfattning-och-begränsningar).
+**Kända begränsningar (medvetna val):** Se [vision.md](vision.md#projektomfattning).

@@ -55,5 +55,5 @@ Subscription Dashboard har genomgått omfattande manuell testning med **20 testf
 | **TOTALT** | **20** | **20** | **0** | **100%** |
 
 **Kritiska buggar:** 0  
-**Kända begränsningar (medvetna val):** Se [vision.md](vision.md#omfattning-och-begränsningar).
+**Kända begränsningar (medvetna val):** Se [vision.md](vision.md#projektomfattning).
 
