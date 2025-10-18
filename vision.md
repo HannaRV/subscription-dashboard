@@ -1,243 +1,197 @@
 # Vision - Subscription Dashboard
 
 **Student:** Hanna Rubio Vretby (hr222sy)  
-**Course:** 1dv610  
-**Project:** Subscription Dashboard  
-**Technologies:** JavaScript, Node.js, Express, HTML/CSS, npm module
+**Kurs:** 1dv610  
+**Projekt:** Subscription Dashboard  
+**Teknologier:** JavaScript, Node.js, Express, HTML/CSS, npm-modul
 
 ---
 
-## Background and Problem Description
+## Bakgrund och problembeskrivning
 
-In today's subscription economy, the average person manages multiple recurring services across streaming, software, fitness, and other categories. This creates several challenges:
+I en tid där allt fler tjänster kräver prenumeration hanterar vi konsumenter i genomsnitt flera återkommande tjänster inom streaming, programvara, träning och andra kategorier. Detta skapar flera utmaningar:
 
-**The Problem:**
-- **Subscription fatigue** - Too many services to track manually
-- **Hidden costs** - Difficulty understanding total monthly/yearly spending
-- **Forgotten subscriptions** - Paying for unused services that accumulate over time
-- **Lack of overview** - No central place to view all subscriptions and costs
+**Problemet:**
+- **Rörigt** - För många tjänster att hålla koll på manuellt
+- **Dolda kostnader** - Svårt att förstå total månads-/årskostnad
+- **Glömda prenumerationer** - Betalar för oanvända tjänster som ackumuleras över tid
+- **Brist på överblick** - Ingen central plats för att se alla prenumerationer och kostnader
 
-Many people attempt to manage subscriptions using:
-- **Spreadsheets** (Excel, Google Sheets) - Manual and time-consuming
-- **Bank statements** - Reactive, difficult to get overview
-- **Mental notes** - Easy to forget and inaccurate
-- **Multiple apps** for different services - Fragmented information
+Många försöker hantera prenumerationer med:
+- **Kalkylblad** manuellt som är tidskrävande
+- **Kontoutdrag** där det är svårt att finna rätt post och få överblick
+- **Flera appar** för olika tjänster - Fragmenterad information
 
-This leads to inefficient subscription management where valuable money is wasted on forgotten services and there's no clear picture of recurring expenses.
-
----
-
-## Purpose
-
-Subscription Dashboard aims to help users:
-
-1. **Gain control over recurring costs**
-   - Collect all subscriptions in one place
-   - See total cost in different frequencies (weekly/monthly/yearly)
-
-2. **Identify unused services**
-   - Discover subscriptions that aren't being used
-   - Make informed decisions about which services to keep
-
-3. **Understand spending patterns**
-   - Convert between different billing frequencies
-   - Compare costs over time
-
-4. **Demonstrate Clean Code principles** (Secondary purpose)
-   - Show object-oriented design in practice
-   - Apply Clean Code chapters 2-11
-   - Integrate and use custom-developed npm module
+Detta leder till ineffektiv prenumerationshantering där värdefulla pengar slösas på glömda tjänster och tydlig bild av återkommande utgifter saknas.
 
 ---
 
-## Target Audience
+## Syfte
 
-### Primary Users
-**Individuals from the age of 18** with multiple digital subscriptions who want to:
-- Take control of their monthly spending
-- Identify and cancel unused subscriptions
-- Get a clear overview of recurring costs
-- Make informed decisions about which services to keep
-
-**Typical characteristics:**
-- Has several active subscriptions
-- Uses streaming services, software tools, gym memberships, etc.
-- Wants to budget and reduce unnecessary spending
-- Comfortable using web applications
-- Values simplicity over complex features
-
-### Secondary Users
-**Students and developers** who want to:
-- Study Clean Code principles in practice
-- See object-oriented design in a full-stack application
-- Learn how to integrate and use npm modules
-- Understand software architecture patterns
+Subscription Dashboard hjälper användare ta kontroll över sina prenumerationskostnader genom att samla alla tjänster på ett ställe, automatiskt beräkna totalkostnader och visualisera utgifter i olika 
+perspektiv.
 
 ---
 
-## Market and Competing Solutions
+## Målgrupp
 
-### Existing Solutions:
+### Primära användare
+**Individer från 18 års ålder** med flera digitala prenumerationer som vill:
+- Ta kontroll över sina utgifter
+- Identifiera och avsluta oanvända prenumerationer
+- Få en tydlig överblick av återkommande kostnader
+- Fatta välavvägda beslut om vilka tjänster som ska behållas
 
-**1. Spreadsheets (Excel/Google Sheets)**
-- **Strengths:** Flexible, customizable
-- **Weaknesses:** Manual data entry, no automation, time-consuming
-- **Target:** DIY users willing to maintain manually
-
-**2. Banking Apps**
-- **Strengths:** Automatic transaction tracking
-- **Weaknesses:** Reactive, no categorization, no proactive management
-- **Target:** General banking customers
-
-**3. Notes/Todo Apps**
-- **Strengths:** Simple, quick notes
-- **Weaknesses:** No calculations, no structure, no analytics
-- **Target:** General note-taking
-
-### Current User Approach:
-Most people combine multiple tools (or none at all) which creates:
-- Fragmented information
-- Risk of missing subscriptions
-- No clear total cost overview
-
-**Gap in Market:**  
-Few solutions are specifically designed for Swedish users wanting a simple, focused tool for subscription management without complexity.
+**Typiska egenskaper:**
+- Har flera aktiva prenumerationer
+- Använder streamingtjänster, programvaruverktyg, gymmedlemskap m.m.
+- Vill budgetera och minska onödiga utgifter
+- Bekväm med att använda webbapplikationer
+- Värderar enkelhet över komplexa funktioner
 
 ---
 
-## Project Value and Functionality
+## Marknad och konkurrerande lösningar
 
-Subscription Dashboard delivers:
+### Befintliga lösningar:
 
-### Centralized Subscription Overview
-Collect all recurring costs in one place. No subscription forgotten, no cost hidden. Finally gain full control over your subscription spending with a simple, clear overview that's always up to date.
+**1. Kalkylblad (Excel/Google Sheets)**
+- **Styrkor:** Flexibla, anpassningsbara
+- **Svagheter:** Manuell datainmatning, ingen automatisering, tidskrävande
+- **Målgrupp:** DIY-användare villiga att underhålla manuellt
 
-### Intelligent Cost Insights
-View your total spending in the perspective that suits you best - per week, month, or year. Understand how small recurring costs accumulate over time and make informed decisions about which services are truly worth the money.
+**2. Bankappar**
+- **Styrkor:** Automatisk transaktionsspårning
+- **Svagheter:** Reaktiv, ingen kategorisering, ingen proaktiv hantering
+- **Målgrupp:** Allmänna bankkunder
 
-### Flexible Frequency Visualization
-Compare apples to apples - whether a service bills weekly, monthly, or yearly, view all costs in the same timeframe. Switch between weekly, monthly, and yearly perspectives with one click to gain the insights you need right now.
+**3. Antecknings-/Todo-appar**
+- **Styrkor:** Enkla, snabba anteckningar
+- **Svagheter:** Inga beräkningar, ingen struktur, ingen analys
+- **Målgrupp:** Allmän anteckningshantering
 
-### Simple and Fast Management
-Minimalist interface without unnecessary complexity. Add or remove subscriptions in seconds, with no learning curve. Perfect for those who want control without spending time on administration.
+### Nuvarande användarmetod:
+De flesta kombinerar flera verktyg (eller inga alls) vilket skapar:
+- Fragmenterad information
+- Risk att missa prenumerationer
+- Ingen tydlig totalkostnadsöverblick
 
-### Mobile-Responsive Design
-Manage your subscriptions wherever you are - at home on your computer or on the go with your mobile. Responsive design that works equally well on all devices.
-
-### Secure and Reliable
-Built with security in focus from the ground up. Protected against abuse and incorrect data, so you can trust that your information is handled correctly.
-
-### Unique Advantages
-
-**For Swedish Users:**
-- Swedish currency (SEK) as default
-- No need for bank account connection
-- Privacy-first approach - your data stays with you
-
-**For Learning:**
-- Demonstrates Clean Code principles in practice
-- Shows object-oriented design in full-stack context
-- Example of npm module integration and usage
-- MVC-inspired architecture
+**Gap på marknaden:**  
+Få lösningar är specifikt utformade för svenska användare som vill ha ett enkelt, fokuserat verktyg för prenumerationshantering utan komplexitet.
 
 ---
 
-## Scope and Limitations
+## Projektvärde och funktionalitet
 
-### MVP Scope (Current)
-The project focuses on **fundamental subscription management**:
-- Centralized overview of all subscriptions
-- Automatic cost calculation and conversion
-- Flexible frequency visualization (week/month/year)
-- Secure input validation and protection
+Subscription Dashboard levererar:
 
-### Conscious Limitations (MVP)
+### Centraliserad prenumerationsöversikt
+Samla alla återkommande kostnader på ett ställe. Ingen prenumeration glömd, ingen kostnad dold. Få äntligen full kontroll över dina prenumerationsutgifter med en enkel, tydlig överblick som alltid är uppdaterad.
 
-**Technical Constraints (By Design):**
+### Snabb och smart kostnadsöversikt
+Visa dina totala utgifter i det perspektiv som passar dig bäst: per vecka, månad eller år. Förstå hur små återkommande kostnader ackumuleras över tid och fatta informerade beslut om vilka tjänster som verkligen är värda pengarna.
 
-This is a **single-user application without authentication or data persistence**, designed specifically for demonstrating Clean Code principles and software design patterns in an academic context.
+### Flexibel frekvensvisualisering
+Oavsett om en tjänst fakturerar veckovis, månadsvis eller årligen visas alla kostnader i den frekvens man önskar. Växla mellan veckovis, månadsvis och årligt perspektiv med ett klick för att få den insikt du behöver just nu.
 
-- **No user accounts** - Application assumes single user on local machine
-- **No authentication system** - No login/logout functionality
-- **In-memory storage only** - Data stored in server memory during runtime
-- **No data persistence** - All subscriptions are lost on page reload or server restart
-- **Single session design** - Each user session starts fresh
+### Enkel och snabb hantering
+Minimalistiskt gränssnitt utan onödig komplexitet. Lägg till eller ta bort prenumerationer på sekunder utan inlärningskurva. Perfekt för dig som vill ha kontroll utan att lägga tid på administration.
 
-These constraints are **intentional for this assignment**, allowing focus on:
-- Code quality and Clean Code principles (chapters 2-11)
-- Object-oriented design and architectural patterns
-- Module integration and proper separation of concerns
-- Core subscription management functionality
+### Mobil-responsiv design
+Hantera dina prenumerationer var du än är, hemma vid datorn eller på resande fot med mobilen. Responsiv design som fungerar lika bra på alla enheter.
 
-**Functional Limitations:**
-- **No edit functionality** - Users must delete and recreate to modify subscriptions
-- **No usage analytics** - UsageAnalyzer from module not implemented in this version
-- **No category grouping** - Subscriptions not grouped or filtered by category
-- **No subscription reminders** - No notification system for upcoming renewals
+### Säker och tillförlitlig
+Byggd med säkerhet i fokus, så du kan lita på att din information hanteras korrekt.
 
-### Future Development
-Planned improvements for production version:
-- **User authentication and accounts** - Secure login system with sessions
-- **Database integration** - Persistent storage (MongoDB/PostgreSQL)
-- **Multi-user support** - Each user maintains their own subscription list
-- **Edit functionality** for subscriptions
-- **LocalStorage fallback** - Client-side persistence for single-user scenarios
-- **Usage analysis** - Cost per hour of use, identify unused services
-- **Category breakdown** - Visual charts and spending by category
-- **Export capabilities** - PDF reports and data export
-- **Spending trends** - Track changes over time
-- **Subscription reminders** - Notifications for upcoming renewals
+### Unika fördelar
+
+**För svenska användare:**
+- Svensk valuta (SEK) som standard
+- Inget behov av bankkontokoppling
 
 ---
 
-## Technical Context
 
-### Technology Stack
+## Teknisk kontext
+
+### Teknikstack
 
 **Backend:**
-- **Node.js (≥20.6.0)** - JavaScript runtime environment
-- **Express 5** - Lightweight and flexible web framework
-- **@hr222sy/subscription-tracker (v1.0.0)** - Custom npm module for subscription logic
-- **helmet** - Security headers
-- **express-rate-limit** - Rate limiting protection
+- **Node.js (≥20.6.0)** - JavaScript runtime-miljö
+- **Express 5** - Lättviktig och flexibel webbramverk
+- **@hr222sy/subscription-tracker (v1.0.0)** - Anpassad npm-modul för prenumerationslogik
+- **helmet** - Säkerhetshuvuden
+- **express-rate-limit** - Rate limiting-skydd
 
 **Frontend:**
-- **Vanilla JavaScript (ES6+)** - No framework dependencies
-- **HTML5** - Semantic markup
-- **CSS3** - Responsive styling
+- **Vanilla JavaScript (ES6+)** - Inga ramverksberoenden
+- **HTML5** - Semantisk markup
+- **CSS3** - Responsiv styling
 
-**Architecture:**
-- **MVC-inspired architecture** - Clear separation of Model, View, and Controller concerns
-- **Repository Pattern** - Data access abstraction isolating the module
-- **Object-Oriented Design** - Classes with single responsibilities
-- **Clean Code Principles** - Readable, maintainable code following Martin's guidelines
+**Arkitektur:**
+- **MVC-inspirerad arkitektur** - Tydlig separation av Model, View och Controller-ansvar
+- **Repository Pattern** - Dataåtkomstabstraktion som isolerar modulen
+- **Objektorienterad design** - Klasser med enskilda ansvar
+- **Clean Code-principer** - Läsbar, underhållbar kod enligt Martins riktlinjer
 
-### Why These Choices?
+### Varför dessa val?
 
-**Vanilla JavaScript** - Demonstrates core programming skills without framework magic, keeps the application lightweight and fast.
+**Vanilla JavaScript** - Demonstrerar grundläggande programmeringskunskaper utan ramverksmagin, håller applikationen lättviktig och snabb.
 
-**Express** - Industry-standard web framework that's well-documented and flexible enough for educational purposes while being production-ready.
+**Express** - Branschstandard webbramverk som är väldokumenterat och tillräckligt flexibelt för utbildningsändamål samtidigt som det är produktionsklart.
 
-**Custom npm module** - Shows the complete development cycle from module creation to integration, demonstrating dependency management and API design.
+**Anpassad npm-modul** - Visar den kompletta utvecklingscykeln från modulskapande till integration, demonstrerar beroendehantering och API-design.
 
-**Object-Oriented Design** - Provides clear structure and demonstrates proper design patterns, making the code educational and maintainable.
+**Objektorienterad design** - Ger tydlig struktur och demonstrerar designmönster, med avsikt att göra koden underhållbar.
 
-**No database (MVP)** - Simplifies deployment and allows focus on code quality and architecture rather than infrastructure setup. Intentional constraint for this academic project.
-
----
-
-## Academic Purpose
-
-This project was created as part of the **1dv610 course** at Linnaeus University, focusing on:
-- Clean Code principles (Robert C. Martin)
-- Object-oriented programming
-- Software design patterns
-- Code quality and maintainability
-
-**The module (@hr222sy/subscription-tracker)** was developed in Assignment 2 (L2) and is used here to demonstrate integration between module and application, showing proper separation of concerns and dependency management.
+**Ingen databas (MVP)** - Förenklar deployment och tillåter fokus på kodkvalitet och arkitektur snarare än infrastrukturuppsättning. Avsiktlig begränsning för detta akademiska projekt.
 
 ---
 
-**Created by:** Hanna Rubio Vretby  
-**Contact:** hr222sy@student.lnu.se  
-**Institution:** Linnaeus University
+## Projektomfattning
+
+### MVP-omfattning (Nuvarande)
+Projektet fokuserar på **grundläggande prenumerationshantering**:
+- Centraliserad överblick av alla prenumerationer
+- Automatisk kostnadsberäkning och konvertering
+- Flexibel frekvensvisualisering
+- Säker input-validering och skydd
+
+### Medvetna begränsningar (MVP)
+
+**Tekniska begränsningar (Avsiktliga):**
+
+Detta är en **single-user applikation utan autentisering eller datapersistens**, specifikt utformad för att demonstrera Clean Code-principer och mjukvarudesignmönster i ett akademiskt sammanhang.
+
+- **Inga användarkonton** - Applikationen tar en användare
+- **Inget autentiseringssystem** - Ingen login/logout-funktionalitet
+- **Endast minneslagring** - Data lagras i serverns minne under körning
+- **Ingen datapersistens** - Alla prenumerationer går förlorade vid sidladdning eller serveromstart
+- **Design för en session** - Varje användarsession startar från början
+
+
+**Funktionella begränsningar:**
+- **Ingen redigeringsfunktion** - Användare måste ta bort och återskapa för att ändra prenumerationer
+- **Ingen användningsanalys** - UsageAnalyzer från modulen inte implementerad i denna version
+- **Ingen kategorigruppering** - Prenumerationer inte grupperade eller filtrerade efter kategori
+- **Inga prenumerationspåminnelser** - Inget notifikationssystem för kommande förnyelser
+
+### Framtida utveckling
+Planerade förbättringar för produktionsversion:
+- **Användarautentisering och konton** - Säkert login-system med sessioner
+- **Databasintegration** - Persistent lagring (MongoDB/PostgreSQL)
+- **Flermanvändarstöd** - Varje användare upprätthåller sin egen prenumerationslista
+- **Redigeringsfunktion** för prenumerationer
+- **LocalStorage fallback** - Client-side persistens för en-användarscenarier
+- **Användningsanalys** - Kostnad per användaretimme, identifiera oanvända tjänster
+- **Kategoriuppdelning** - Visuella diagram och utgifter per kategori
+- **Exportmöjligheter** - PDF-rapporter och dataexport
+- **Utgiftstrender** - Spåra förändringar över tid
+- **Prenumerationspåminnelser** - Notifikationer för kommande förnyelser
+
+---
+
+## Akademiskt syfte
+
+Projektet skapades för kursen **1dv610** vid Linnéuniversitetet. 
+Modulen @hr222sy/subscription-tracker utvecklades i Uppgift 2 (L2).

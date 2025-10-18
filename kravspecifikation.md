@@ -2,7 +2,7 @@
 
 **Projektnamn:** Subscription Dashboard  
 **Student:** Hanna Rubio Vretby (hr222sy)  
-**Kurs:** 1dv610 - Introduktion till mjukvarukvalitet  
+**Kurs:** 1dv610
 **Teknologier:** Node.js, Express, Vanilla JavaScript, @hr222sy/subscription-tracker
 
 ---
@@ -51,6 +51,7 @@ I denna kravspecifikation används följande prefixsystem för att tydligt kateg
 **F1.2.3:** Systemet ska konvertera kostnader mellan frekvenser korrekt
 - **F1.2.3.1:** Konverteringar ska använda subscription-tracker modulens beräkningsmetoder
 - **F1.2.3.2:** Konverteringar ska använda genomsnittliga värden (4.33 veckor/månad, 52.18 veckor/år)
+**F1.2.3.3:** Alla kostnader ska visas med två decimaler precision
 
 ### 1.3 Felhantering och användarfeedback
 
@@ -75,8 +76,8 @@ I denna kravspecifikation används följande prefixsystem för att tydligt kateg
 **NF2.1.4:** Felmeddelanden ska vara användarvänliga och beskrivande  
 
 ### 2.2 Prestanda
-
-**NF2.2.1:** Systemet ska ha funktionalitet för att hantera ett rimligt antal prenumerationer utan betydande prestandaförsämring  
+**NF2.2.1:** Systemet ska hantera flera prenumerationer utan 
+betydande prestandaförsämring
 **NF2.2.2:** Kostnadsberäkningar ska uppdateras responsivt vid ändringar  
 **NF2.2.3:** Generella responstider ska optimeras för användarvänlighet  
 
@@ -87,11 +88,10 @@ I denna kravspecifikation används följande prefixsystem för att tydligt kateg
 
 ### 2.4 Säkerhet
 
-**NF2.4.1:** Input validation ska ske både på frontend och backend  
-**NF2.4.2:** Rate limiting ska skydda mot överbelastning (100 requests/minut)  
-**NF2.4.3:** Security headers ska implementeras via helmet  
-- **NF2.4.3.1:** Content Security Policy ska förhindra inline scripts  
-**NF2.4.4:** Prenumerationsnamn ska URL-encodas för säker POST  
+**NF2.4.1:** Input validation ska ske både på frontend och backend
+**NF2.4.2:** Rate limiting ska skydda mot överbelastning
+**NF2.4.3:** Security headers ska implementeras (helmet)
+**NF2.4.4:** Användarinput ska saniteras för säker hantering 
 
 ### 2.5 Underhållbarhet
 
@@ -103,7 +103,8 @@ I denna kravspecifikation används följande prefixsystem för att tydligt kateg
 ### 2.6 Testbarhet
 
 **NF2.6.1:** Alla funktionella krav ska vara testbara manuellt via UI  
-**NF2.6.2:** Testrapport ska dokumentera alla testfall och resultat  
+**NF2.6.2:** Testrapport ska dokumentera alla testfall och resultat
+**NF2.6.3:** Minst ett testfall ska finnas per funktionellt krav 
 
 ---
 
@@ -162,43 +163,4 @@ I denna kravspecifikation används följande prefixsystem för att tydligt kateg
 ### 4.3 Standarder
 
 **E4.3.1:** HTML ska vara semantiskt korrekt  
-**E4.3.2:** Säkerhetsåtgärder ska följa grundläggande OWASP-riktlinjer  
-
----
-
-## 5. Begränsningar och framtida utveckling
-
-### 5.1 Kända begränsningar i MVP
-
-**Ingen datapersistens:**  
-Data sparas endast i minnet under aktiv session. Vid sidladdning försvinner all data.
-
-**Ingen redigeringsfunktion:**  
-Användare måste ta bort och återskapa prenumerationer för att ändra uppgifter.
-
-**Ingen användningsanalys:**  
-UsageAnalyzer från modulen används inte i denna version.
-
-**Ingen kategorianalys:**  
-Kostnad per kategori visas inte grupperat.
-
-### 5.2 Planerade förbättringar (post-MVP)
-
-**Fas 1:**
-- LocalStorage för datapersistens mellan sessioner
-- Edit-funktion för prenumerationer
-- Kategori-gruppering med totalkostnad per kategori
-
-**Fas 2:**
-- Användningsanalys (lägga till usage hours)
-- Identifiera oanvända/underutnyttjade prenumerationer
-- Visuella diagram för kostnadsfördelning
-
-**Fas 3:**
-- Backend-databas
-- Användarautentisering
-- Multi-user support
-
----
-
-**Senast uppdaterad:** 2025-10-17
+**E4.3.2:** Säkerhetsåtgärder ska följa grundläggande OWASP-riktlinjer
