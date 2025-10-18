@@ -24,7 +24,7 @@ I denna kravspecifikation används följande prefixsystem för att tydligt kateg
 
 **F1.1.1:** Användare ska kunna lägga till nya prenumerationer
 - **F1.1.1.1:** Användare ska kunna ange prenumerationsnamn (max 20 tecken)
-- **F1.1.1.2:** Användare ska kunna ange pris i SEK (positiva tal)
+- **F1.1.1.2:** Användare ska kunna ange pris i SEK (0 eller högre, 2 decimaler tillåtna)
 - **F1.1.1.3:** Användare ska kunna välja betalningsfrekvens (weekly, monthly, yearly)
 - **F1.1.1.4:** Användare ska kunna ange kategori (max 20 tecken)
 
@@ -133,9 +133,6 @@ I denna kravspecifikation används följande prefixsystem för att tydligt kateg
 
 **O3.3.1:** JavaScript-kod ska följa ES6+ standard  
 **O3.3.2:** Kod ska följa Clean Code-principer  
-**O3.3.3:** Variabelnamn, funktionsnamn och kommentarer ska skrivas på engelska  
-**O3.3.4:** Private fields ska användas konsekvent (#field)  
-**O3.3.5:** Named constants ska användas för magic strings och numbers  
 
 ### 3.4 Koddokumentation
 
