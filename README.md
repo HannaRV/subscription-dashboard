@@ -16,14 +16,14 @@ A web application for managing and visualizing personal subscriptions. Get a cle
 
 ## Purpose
 
-**For End Users:**  
-Subscription Dashboard helps individuals take control of their subscription spending by providing a central hub for all recurring costs. In a world where the average person has 10+ subscriptions, it's easy to lose track of monthly expenses.
+### For End Users
+Subscription Dashboard helps individuals take control of their subscription spending. Track all recurring costs in one place, identify unused services and make informed decisions about which subscriptions to keep.
 
-**For Developers & Students:**   
-This project serves as a practical example of applying Clean Code principles and object-oriented design in a full-stack web application. It demonstrates the integration and use of a custom npm module in a real application context.
+### For Developers
+This project demonstrates Clean Code principles and object-oriented design in a full-stack application using a custom npm module. Use the [@hr222sy/subscription-tracker](https://www.npmjs.com/package/@hr222sy/subscription-tracker) module in your own projects, study the codebase or contribute improvements. See [DEVELOPER.md](docs/DEVELOPER.md) for details.
 
-**For Educators:**  
-Created as part of the 1dv610 course at Linnaeus University. The project focuses on learning and applying code quality principles, maintainability and software design patterns.
+### For Educators
+Created as part of course 1dv610 at Linnaeus University, demonstrating code quality, maintainability, and software design patterns.
 
 
 ## Screenshots

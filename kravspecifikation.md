@@ -77,7 +77,7 @@ I denna kravspecifikation används följande prefixsystem för att tydligt kateg
 **NF2.1.4:** Felmeddelanden ska vara användarvänliga och beskrivande  
 
 ### 2.2 Prestanda
-**NF2.2.1:** Systemet ska hantera flera prenumerationer utan betydande prestandaförsämring
+**NF2.2.1:** Systemet ska hantera flera prenumerationer utan betydande prestandaförsämring  
 **NF2.2.2:** Kostnadsberäkningar ska uppdateras responsivt vid ändringar  
 **NF2.2.3:** Generella responstider ska optimeras för användarvänlighet  
 
@@ -88,23 +88,23 @@ I denna kravspecifikation används följande prefixsystem för att tydligt kateg
 
 ### 2.4 Säkerhet
 
-**NF2.4.1:** Input validation ska ske både på frontend och backend
-**NF2.4.2:** Rate limiting ska skydda mot överbelastning
-**NF2.4.3:** Security headers ska implementeras (helmet)
-**NF2.4.4:** Användarinput ska saniteras för säker hantering 
+**NF2.4.1:** Input validation ska ske både på frontend och backend  
+**NF2.4.2:** Rate limiting ska skydda mot överbelastning  
+**NF2.4.3:** Security headers ska implementeras (helmet)  
+**NF2.4.4:** Användarinput ska saniteras för säker hantering   
 
 ### 2.5 Underhållbarhet
 
-**NF2.5.1:** Koden ska följa Clean Code-principer
-**NF2.5.2:** Systemet ska separera presentation, business logic och data access
+**NF2.5.1:** Koden ska följa Clean Code-principer  
+**NF2.5.2:** Systemet ska separera presentation, business logic och data access  
 **NF2.5.3:** Modulen (@hr222sy/subscription-tracker) ska vara isolerad via Repository Pattern  
 **NF2.5.4:** Alla publika metoder ska vara dokumenterade med JSDoc  
 
 ### 2.6 Testbarhet
 
 **NF2.6.1:** Alla funktionella krav ska vara testbara manuellt via UI  
-**NF2.6.2:** Testrapport ska dokumentera alla testfall och resultat
-**NF2.6.3:** Minst ett testfall ska finnas per funktionellt krav 
+**NF2.6.2:** Testrapport ska dokumentera alla testfall och resultat  
+**NF2.6.3:** Minst ett testfall ska finnas per funktionellt krav  
 
 ---
 
@@ -113,14 +113,14 @@ I denna kravspecifikation används följande prefixsystem för att tydligt kateg
 ### 3.1 Utvecklingsmiljö och tekniska plattformar
 
 **O3.1.1:** Utveckling ska ske i Visual Studio Code  
-**O3.1.2:** Systemet ska implementeras med följande teknologier:
-- Frontend: Vanilla JavaScript (ES6+), HTML5, CSS3
-- Backend: Node.js (≥20.6.0), Express 5
-- npm-modul: @hr222sy/subscription-tracker (version 1.0.0)
-- Säkerhet: helmet, express-rate-limit
+**O3.1.2:** Systemet ska implementeras med följande teknologier:  
+- Frontend: Vanilla JavaScript (ES6+), HTML5, CSS3  
+- Backend: Node.js (≥20.6.0), Express 5  
+- npm-modul: @hr222sy/subscription-tracker (version 1.0.0)  
+- Säkerhet: helmet, express-rate-limit  
 
-**O3.1.3:** Systemet ska följa en layered architecture med separation of concerns
-**O3.1.4:** Systemet ska driftsättas publikt
+**O3.1.3:** Systemet ska följa en layered architecture med separation of concerns  
+**O3.1.4:** Systemet ska driftsättas publikt  
 
 ### 3.2 Versionshantering
 
