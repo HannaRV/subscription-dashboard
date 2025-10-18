@@ -48,14 +48,7 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 | **Beskrivning** | Testar huvudscenariot där användare lägger till en ny prenumeration med all giltig information. |
 
 **Förutsättning:**
-- Användaren befinner sig på Subscription Dashboard startsida
-- Applikationen är tom (inga befintliga prenumerationer)
-
-**Indata:**
-- **Name:** "Netflix"
-- **Price (kr):** 139
-- **Frequency:** "Monthly"
-- **Category:** "streaming"
+- Inga befintliga prenumerationer
 
 **Teststeg:**
 1. Navigera till applikationen
@@ -86,12 +79,7 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 | **Beskrivning** | Testar att flera prenumerationer kan läggas till och visas korrekt samtidigt. |
 
 **Förutsättning:**
-- Applikationen är tom
-
-**Indata:**
-- **Prenumeration 1:** Name: "Netflix", Price: 139, Frequency: "Monthly", Category: "streaming"
-- **Prenumeration 2:** Name: "Spotify", Price: 1200, Frequency: "Yearly", Category: "music"
-- **Prenumeration 3:** Name: "SATS", Price: 150, Frequency: "Weekly", Category: "fitness"
+- Inga befintliga prenumerationer
 
 **Teststeg:**
 1. Lägg till prenumeration 1 (Netflix)
@@ -118,9 +106,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 - Netflix (139 kr/monthly) finns i listan
 - Spotify (1200 kr/yearly) finns i listan
 
-**Indata:**
-- Klick på "Remove"-knapp för Netflix
-
 **Teststeg:**
 1. Identifiera Netflix i listan
 2. Klicka på "Remove"-knappen för Netflix
@@ -143,10 +128,7 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 | **Beskrivning** | Testar att tomt tillstånd visas när alla prenumerationer tas bort. |
 
 **Förutsättning:**
-- Endast en prenumeration finns (t.ex. Netflix)
-
-**Indata:**
-- Klick på "Remove" för Netflix
+- Endast en prenumeration finns
 
 **Teststeg:**
 1. Klicka på "Remove" för Netflix
@@ -172,9 +154,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 **Förutsättning:**
 - Netflix (139 kr monthly) finns i listan
 - View frequency är "Monthly" (default)
-
-**Indata:**
-- Välj "Yearly" från "View as:"-dropdown
 
 **Teststeg:**
 1. Observera Netflix display cost: "139.00 kr/monthly"
@@ -203,10 +182,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 - Spotify (1200 kr yearly) finns i listan
 - View frequency är "Monthly"
 
-**Indata:**
-- Byt till "Yearly" view
-- Sedan byt till "Weekly" view
-
 **Teststeg:**
 1. Observera Spotify i monthly view: "100.00 kr/monthly"
 2. Byt till "Yearly" view
@@ -230,10 +205,7 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 | **Beskrivning** | Testar att total cost räknas om automatiskt vid tillägg, borttagning och frekvensändring. |
 
 **Förutsättning:**
-- Tom applikation
-
-**Indata:**
-- Olika prenumerationsoperationer
+- Inga befintliga prenumerationer
 
 **Teststeg:**
 1. Observera initial total: "0.00 kr"
@@ -260,15 +232,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 | **Scenario** | Försök lägga till prenumeration utan namn |
 | **Beskrivning** | Testar att required-validering fungerar för name field. |
 
-**Förutsättning:**
-- Användaren befinner sig på startsidan
-
-**Indata:**
-- **Name:** (tomt)
-- **Price:** 100
-- **Frequency:** "Monthly"
-- **Category:** "test"
-
 **Teststeg:**
 1. Lämna **Name**-fältet tomt
 2. Fyll i **Price:** 100
@@ -292,12 +255,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 | **Scenario** | Försök skriva mer än 20 tecken i name field |
 | **Beskrivning** | Testar att maxlength-attributet preventerar för lång input. |
 
-**Förutsättning:**
-- Användaren befinner sig på startsidan
-
-**Indata:**
-- Försök skriva 21+ tecken i name field
-
 **Teststeg:**
 1. Klicka i **Name**-fältet
 2. Försök skriva över 20 tecken
@@ -316,15 +273,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 | **Krav** | F1.3.2.2 - Negativt pris ska ge felmeddelande |
 | **Scenario** | Försök ange negativt pris |
 | **Beskrivning** | Testar att min="0" attributet validerar pris. |
-
-**Förutsättning:**
-- Användaren befinner sig på startsidan
-
-**Indata:**
-- **Name:** "Test"
-- **Price:** -100
-- **Frequency:** "Monthly"
-- **Category:** "test"
 
 **Teststeg:**
 1. Fyll i **Name:** "Test"
@@ -348,15 +296,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 | **Krav** | F1.3.2.2 - Ogiltigt pris ska ge felmeddelande |
 | **Scenario** | Försök lägga till prenumeration utan pris |
 | **Beskrivning** | Testar att required-validering fungerar för price field. |
-
-**Förutsättning:**
-- Användaren befinner sig på startsidan
-
-**Indata:**
-- **Name:** "Test"
-- **Price:** (tomt)
-- **Frequency:** "Monthly"
-- **Category:** "test"
 
 **Teststeg:**
 1. Fyll i **Name:** "Test"
@@ -382,13 +321,7 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 | **Beskrivning** | Testar att step="0.01" tillåter decimaler. |
 
 **Förutsättning:**
-- Tom applikation
-
-**Indata:**
-- **Name:** "Test"
-- **Price:** 99.50
-- **Frequency:** "Monthly"
-- **Category:** "test"
+- Inga befintliga prenumerationer
 
 **Teststeg:**
 1. Fyll i **Name:** "Test"
@@ -412,15 +345,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 | **Scenario** | Försök skicka utan att välja frekvens |
 | **Beskrivning** | Testar required på select field med tom default option. |
 
-**Förutsättning:**
-- Användaren befinner sig på startsidan
-
-**Indata:**
-- **Name:** "Test"
-- **Price:** 100
-- **Frequency:** "Select frequency" (default/tom)
-- **Category:** "test"
-
 **Teststeg:**
 1. Fyll i **Name:** "Test"
 2. Fyll i **Price:** 100
@@ -442,15 +366,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 | **Krav** | F1.3.2.4 - Ogiltig kategori ska ge felmeddelande |
 | **Scenario** | Försök lägga till utan kategori |
 | **Beskrivning** | Testar required-validering för category field. |
-
-**Förutsättning:**
-- Användaren befinner sig på startsidan
-
-**Indata:**
-- **Name:** "Test"
-- **Price:** 100
-- **Frequency:** "Monthly"
-- **Category:** (tomt)
 
 **Teststeg:**
 1. Fyll i **Name:** "Test"
@@ -474,12 +389,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 | **Scenario** | Försök skriva mer än 20 tecken i category |
 | **Beskrivning** | Testar maxlength-attributet för category. |
 
-**Förutsättning:**
-- Användaren befinner sig på startsidan
-
-**Indata:**
-- Försök skriva 21+ tecken i category field
-
 **Teststeg:**
 1. Klicka i **Category**-fältet
 2. Försök skriva över 20 tecken
@@ -499,12 +408,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 |--------|-------------|
 | **Scenario** | Lägga till prenumeration med pris 0 |
 | **Beskrivning** | Testar att noll är ett giltigt värde (min="0"). |
-
-**Indata:**
-- **Name:** "Free Trial"
-- **Price:** 0
-- **Frequency:** "Monthly"
-- **Category:** "streaming"
 
 **Teststeg:**
 1. Fyll i Name: "Free Trial"
@@ -526,12 +429,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 |--------|-------------|
 | **Scenario** | Namn med specialtecken |
 | **Beskrivning** | Testar att specialtecken tillåts i name. |
-
-**Indata:**
-- **Name:** "AT&T"
-- **Price:** 100
-- **Frequency:** "Monthly"
-- **Category:** "telecom"
 
 **Teststeg:**
 1. Fyll i Name: "AT&T"
@@ -556,9 +453,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 | **Scenario** | Lägga till 20+ prenumerationer |
 | **Beskrivning** | Testar att applikationen hanterar många prenumerationer. |
 
-**Indata:**
-- 25 olika prenumerationer
-
 **Teststeg:**
 1. Lägg till 25 olika prenumerationer
 2. Byt visningsfrekvens flera gånger
@@ -579,11 +473,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 | **Scenario** | Lägga till flera prenumerationer med samma namn |
 | **Beskrivning** | Testar att duplicerade namn tillåts (olika priser/frekvenser). |
 
-**Indata:**
-- **Prenumeration 1:** Netflix, 139 kr, Monthly, streaming
-- **Prenumeration 2:** Netflix, 169 kr, Monthly, streaming
-- **Prenumeration 3:** Netflix, 99 kr, Monthly, streaming
-
 **Teststeg:**
 1. Lägg till: Netflix, 139 kr, Monthly, streaming
 2. Lägg till: Netflix, 169 kr, Monthly, streaming
@@ -603,12 +492,6 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 |--------|-------------|
 | **Scenario** | Högt pris |
 | **Beskrivning** | Testar att stora tal hanteras. |
-
-**Indata:**
-- **Name:** "Enterprise"
-- **Price:** 999999
-- **Frequency:** "Yearly"
-- **Category:** "software"
 
 **Teststeg:**
 1. Fyll i Name: "Enterprise"
