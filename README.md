@@ -1,4 +1,7 @@
 # Subscription Dashboard
+![Node.js](https://img.shields.io/badge/node-%3E%3D20.6.0-brightgreen)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm module](https://img.shields.io/badge/npm-@hr222sy/subscription--tracker-blue)](https://www.npmjs.com/package/@hr222sy/subscription-tracker)
 
 ⚠️ **Disclaimer:** This is a student project built for a school assignment focusing on Clean Code principles. 
 
