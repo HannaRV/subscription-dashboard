@@ -1,36 +1,59 @@
 # Vision - Subscription Dashboard
 
-**Name:** Hanna Rubio Vretby  
-**Username:** hr222sy  
+**Student:** Hanna Rubio Vretby (hr222sy)  
 **Course:** 1dv610  
 **Project:** Subscription Dashboard  
 **Technologies:** JavaScript, Node.js, Express, HTML/CSS, npm module
+
 ---
 
 ## Background and Problem Description
 
-In today's subscription economy, the average person manages 10+ recurring services across streaming, software, fitness, and other categories. This creates several challenges:
+In today's subscription economy, the average person manages multiple recurring services across streaming, software, fitness, and other categories. This creates several challenges:
 
 **The Problem:**
 - **Subscription fatigue** - Too many services to track manually
 - **Hidden costs** - Difficulty understanding total monthly/yearly spending
-- **Forgotten subscriptions** - Paying for unused services that add up over time
-- **Lack of overview** - No central place to see all subscriptions and costs
+- **Forgotten subscriptions** - Paying for unused services that accumulate over time
+- **Lack of overview** - No central place to view all subscriptions and costs
 
 Many people attempt to manage subscriptions using:
-- Spreadsheets (Excel, Google Sheets) - Manual and time-consuming
-- Bank statements - Reactive, hard to get overview
-- Mental notes - Easy to forget and inaccurate
-- Multiple apps for different services - Fragmented information
+- **Spreadsheets** (Excel, Google Sheets) - Manual and time-consuming
+- **Bank statements** - Reactive, difficult to get overview
+- **Mental notes** - Easy to forget and inaccurate
+- **Multiple apps** for different services - Fragmented information
 
 This leads to inefficient subscription management where valuable money is wasted on forgotten services and there's no clear picture of recurring expenses.
+
+---
+
+## Purpose
+
+Subscription Dashboard aims to help users:
+
+1. **Gain control over recurring costs**
+   - Collect all subscriptions in one place
+   - See total cost in different frequencies (weekly/monthly/yearly)
+
+2. **Identify unused services**
+   - Discover subscriptions that aren't being used
+   - Make informed decisions about which services to keep
+
+3. **Understand spending patterns**
+   - Convert between different billing frequencies
+   - Compare costs over time
+
+4. **Demonstrate Clean Code principles** (Secondary purpose)
+   - Show object-oriented design in practice
+   - Apply Clean Code chapters 2-11
+   - Integrate and use custom-developed npm module
 
 ---
 
 ## Target Audience
 
 ### Primary Users
-**Individuals aged 18-45** with multiple digital subscriptions who want to:
+**Individuals from the age of 18** with multiple digital subscriptions who want to:
 - Take control of their monthly spending
 - Identify and cancel unused subscriptions
 - Get a clear overview of recurring costs
@@ -61,18 +84,18 @@ This leads to inefficient subscription management where valuable money is wasted
 - **Weaknesses:** Manual data entry, no automation, time-consuming
 - **Target:** DIY users willing to maintain manually
 
-**3. Banking Apps**
+**2. Banking Apps**
 - **Strengths:** Automatic transaction tracking
 - **Weaknesses:** Reactive, no categorization, no proactive management
 - **Target:** General banking customers
 
-**4. Notes/Todo Apps**
+**3. Notes/Todo Apps**
 - **Strengths:** Simple, quick notes
 - **Weaknesses:** No calculations, no structure, no analytics
 - **Target:** General note-taking
 
 ### Current User Approach:
-Most people combine multiple tools (or no at all) which creates:
+Most people combine multiple tools (or none at all) which creates:
 - Fragmented information
 - Risk of missing subscriptions
 - No clear total cost overview
@@ -82,98 +105,139 @@ Few solutions are specifically designed for Swedish users wanting a simple, focu
 
 ---
 
-## Core Requirements / Features / Unique Selling Points
+## Project Value and Functionality
 
-Subscription Dashboard aims to deliver:
+Subscription Dashboard delivers:
 
-### MVP Features (Current)
-1. **Simple Subscription Management**
-   - Add subscriptions with name, price, frequency, category
-   - Remove subscriptions easily
-   - View all subscriptions in one place
+### Centralized Subscription Overview
+Collect all recurring costs in one place. No subscription forgotten, no cost hidden. Finally gain full control over your subscription spending with a simple, clear overview that's always up to date.
 
-2. **Automatic Cost Calculation**
-   - Total cost calculation in multiple frequencies
-   - Converts between weekly/monthly/yearly frequencies
-   - Real-time updates
+### Intelligent Cost Insights
+View your total spending in the perspective that suits you best - per week, month, or year. Understand how small recurring costs accumulate over time and make informed decisions about which services are truly worth the money.
 
-3. **Frequency Toggle**
-   - View all subscriptions in weekly, monthly, or yearly cost
-   - See both display cost and original billing frequency
-   - Dynamic total cost updates based on selected view
-   - Helps users understand subscription value across different timeframes
+### Flexible Frequency Visualization
+Compare apples to apples - whether a service bills weekly, monthly, or yearly, view all costs in the same timeframe. Switch between weekly, monthly, and yearly perspectives with one click to gain the insights you need right now.
 
-4. **Clean Interface**
-   - Minimal learning curve
-   - Mobile-responsive design
-   - Quick overview of spending
+### Simple and Fast Management
+Minimalist interface without unnecessary complexity. Add or remove subscriptions in seconds, with no learning curve. Perfect for those who want control without spending time on administration.
 
-5. **Security**
-   - Input validation and sanitization
-   - Rate limiting
-   - Security headers (helmet)
+### Mobile-Responsive Design
+Manage your subscriptions wherever you are - at home on your computer or on the go with your mobile. Responsive design that works equally well on all devices.
 
-### Future Enhancements (Post-MVP)
-1. **Edit Subscription**
-   - Modify existing subscription details
-   - Update price, frequency, or category
-   - Currently requires delete + re-add
+### Secure and Reliable
+Built with security in focus from the ground up. Protected against abuse and incorrect data, so you can trust that your information is handled correctly.
 
-2. **Usage Analytics**
-   - Identify unused subscriptions (0 usage hours)
-   - Calculate cost per hour of use
-   - Find underutilized services
+### Unique Advantages
 
-3. **Category Breakdown**
-   - See spending by category (streaming, software, fitness)
-   - Visual breakdown with charts
-   - Compare categories
+**For Swedish Users:**
+- Swedish currency (SEK) as default
+- No need for bank account connection
+- Privacy-first approach - your data stays with you
 
-4. **Data Persistence**
-   - User accounts
-   - Save subscriptions between sessions
-   - Cloud backup
-
-5. **Advanced Features**
-   - Search and filter subscriptions
-   - Sort by price, name, or category
-   - Subscription reminders
-   - Spending trends over time
-   - Export to PDF
-   
-### Unique Selling Points
-- **Swedish-focused** - Built for Swedish market with SEK currency
-- **Privacy-first** - No bank account connection required
-- **Lightweight** - Fast, simple, focused on one task
-- **Module-powered** - Uses published npm module (@hr222sy/subscription-tracker)
+**For Learning:**
+- Demonstrates Clean Code principles in practice
+- Shows object-oriented design in full-stack context
+- Example of npm module integration and usage
+- MVC-inspired architecture
 
 ---
 
-## Technology Stack
+## Scope and Limitations
 
-### Backend
-- **Node.js** - JavaScript runtime
-- **Express 5** - Web framework for routing and middleware
-- **@hr222sy/subscription-tracker** - Custom npm module for subscription logic
+### MVP Scope (Current)
+The project focuses on **fundamental subscription management**:
+- Centralized overview of all subscriptions
+- Automatic cost calculation and conversion
+- Flexible frequency visualization (week/month/year)
+- Secure input validation and protection
+
+### Conscious Limitations (MVP)
+
+**Technical Constraints (By Design):**
+
+This is a **single-user application without authentication or data persistence**, designed specifically for demonstrating Clean Code principles and software design patterns in an academic context.
+
+- **No user accounts** - Application assumes single user on local machine
+- **No authentication system** - No login/logout functionality
+- **In-memory storage only** - Data stored in server memory during runtime
+- **No data persistence** - All subscriptions are lost on page reload or server restart
+- **Single session design** - Each user session starts fresh
+
+These constraints are **intentional for this assignment**, allowing focus on:
+- Code quality and Clean Code principles (chapters 2-11)
+- Object-oriented design and architectural patterns
+- Module integration and proper separation of concerns
+- Core subscription management functionality
+
+**Functional Limitations:**
+- **No edit functionality** - Users must delete and recreate to modify subscriptions
+- **No usage analytics** - UsageAnalyzer from module not implemented in this version
+- **No category grouping** - Subscriptions not grouped or filtered by category
+- **No subscription reminders** - No notification system for upcoming renewals
+
+### Future Development
+Planned improvements for production version:
+- **User authentication and accounts** - Secure login system with sessions
+- **Database integration** - Persistent storage (MongoDB/PostgreSQL)
+- **Multi-user support** - Each user maintains their own subscription list
+- **Edit functionality** for subscriptions
+- **LocalStorage fallback** - Client-side persistence for single-user scenarios
+- **Usage analysis** - Cost per hour of use, identify unused services
+- **Category breakdown** - Visual charts and spending by category
+- **Export capabilities** - PDF reports and data export
+- **Spending trends** - Track changes over time
+- **Subscription reminders** - Notifications for upcoming renewals
+
+---
+
+## Technical Context
+
+### Technology Stack
+
+**Backend:**
+- **Node.js (≥20.6.0)** - JavaScript runtime environment
+- **Express 5** - Lightweight and flexible web framework
+- **@hr222sy/subscription-tracker (v1.0.0)** - Custom npm module for subscription logic
 - **helmet** - Security headers
 - **express-rate-limit** - Rate limiting protection
 
-### Frontend
-- **Vanilla JavaScript (ES6+)** - No framework overhead
+**Frontend:**
+- **Vanilla JavaScript (ES6+)** - No framework dependencies
 - **HTML5** - Semantic markup
 - **CSS3** - Responsive styling
 
-### Architecture
+**Architecture:**
 - **MVC-inspired architecture** - Clear separation of Model, View, and Controller concerns
-- **Repository Pattern** - Data access abstraction
+- **Repository Pattern** - Data access abstraction isolating the module
 - **Object-Oriented Design** - Classes with single responsibilities
-- **Clean Code Principles** - Readable, maintainable code
+- **Clean Code Principles** - Readable, maintainable code following Martin's guidelines
 
 ### Why These Choices?
-- **Vanilla JS** - No framework complexity
-- **Express** - Lightweight, flexible and well-documented
-- **Custom module** - Demonstrates module creation and npm publishing
-- **OOP** - Shows proper object-oriented design patterns
-- **No database (MVP)** - Simplifies deployment and focus on code quality
 
-This project is created as part of the **1dv610 course** at Linnaeus University, demonstrating the practical application of Clean Code principles and object-oriented design patterns.
+**Vanilla JavaScript** - Demonstrates core programming skills without framework magic, keeps the application lightweight and fast.
+
+**Express** - Industry-standard web framework that's well-documented and flexible enough for educational purposes while being production-ready.
+
+**Custom npm module** - Shows the complete development cycle from module creation to integration, demonstrating dependency management and API design.
+
+**Object-Oriented Design** - Provides clear structure and demonstrates proper design patterns, making the code educational and maintainable.
+
+**No database (MVP)** - Simplifies deployment and allows focus on code quality and architecture rather than infrastructure setup. Intentional constraint for this academic project.
+
+---
+
+## Academic Purpose
+
+This project was created as part of the **1dv610 course** at Linnaeus University, focusing on:
+- Clean Code principles (Robert C. Martin)
+- Object-oriented programming
+- Software design patterns
+- Code quality and maintainability
+
+**The module (@hr222sy/subscription-tracker)** was developed in Assignment 2 (L2) and is used here to demonstrate integration between module and application, showing proper separation of concerns and dependency management.
+
+---
+
+**Created by:** Hanna Rubio Vretby  
+**Contact:** hr222sy@student.lnu.se  
+**Institution:** Linnaeus University
