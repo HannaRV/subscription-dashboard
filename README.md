@@ -45,20 +45,22 @@ Created as part of the 1dv610 course at Linnaeus University. The project focuses
 - [Installation](#installation)
 - [Usage](#usage)
 - [Known Limitations](#known-limitations-mvp)
-- [Project Structure](#project-structure)
-- [Architecture](#architecture)
 - [Technologies](#technologies)
 - [Security](#security)
+- [Project Structure](#project-structure)
 - [For Developers](#for-developers)
-- [Requirements](#requirements)
 - [License](#license)
 - [Author](#author)
+- [Academic Context](#academic-context)
+
+
 
 ## Installation
 
 ### Prerequisites
-- Node.js ≥20.6.0
-- npm ≥10.0.0
+- **Node.js** ≥20.6.0
+- **npm** ≥10.0.0
+- **Browser:** Modern browser with ES6+ support
 
 ### Setup
 
@@ -126,63 +128,6 @@ http://localhost:3000
 - Category breakdown with charts
 - Backend database with user accounts
 
-## Project Structure
-```
-subscription-dashboard/
-├── src/
-│   ├── server.js                # Application entry point
-│   ├── config/
-│   │   ├── express.js           # Express application setup
-│   │   └── httpStatus.js        # HTTP status code constants
-│   ├── controllers/
-│   │   └── SubscriptionController.js
-│   ├── middleware/
-│   │   ├── ErrorHandler.js
-│   │   ├── SecurityHandler.js
-│   │   └── SubscriptionValidation.js
-│   ├── models/
-│   │   └── SubscriptionRepository.js
-│   ├── public/
-│   │   ├── css/
-│   │   │   └── styles.css
-│   │   └── js/
-│   │       ├── config.js        # Frontend constants
-│   │       └── main.js
-│   ├── routes/
-│   │   └── SubscriptionRouter.js
-│   └── views/
-│       └── index.html
-├── docs/                        # Project documentation
-├── .gitignore
-├── package.json
-└── README.md
-```
-
-## Architecture
-
-**Three-tier architecture with MVC pattern:**
-```
-┌─────────────────────────────────────┐
-│     Presentation Layer              │
-│  (Controllers + Frontend)           │
-└─────────────┬───────────────────────┘
-              │
-┌─────────────▼───────────────────────┐
-│     Business Logic Layer            │
-│  (@hr222sy/subscription-tracker)    │
-└─────────────┬───────────────────────┘
-              │
-┌─────────────▼───────────────────────┐
-│     Data Access Layer               │
-│  (SubscriptionRepository)           │
-└─────────────────────────────────────┘
-```
-
-**Design patterns:**
-- **MVC Pattern** - Backend (Express) and Frontend (Vanilla JS)
-- **Repository Pattern** - Isolates npm module from application
-- **Dependency Injection** - Constructor injection with default parameters
-
 ## Technologies
 
 ### Backend
@@ -207,6 +152,21 @@ The application implements multiple security layers:
 - ✅ **Error Handling** - Centralized error handling with proper responses
 - ✅ **URL Encoding** - Safe handling of subscription names
 
+## Project Structure
+```
+subscription-dashboard/
+├── src/                    # Backend application code
+│   ├── server.js           # Entry point
+│   ├── controllers/        # Request handlers
+│   ├── models/             # Data access layer
+│   ├── routes/             # API routes
+│   ├── middleware/         # Validation, security, error handling
+│   └── views/              # HTML templates
+├── public/                 # Frontend assets (CSS, JS)
+├── docs/                   # Documentation
+└── package.json
+```
+
 ## For Developers
 
 **Want to understand the codebase or contribute?**
@@ -222,13 +182,6 @@ See the **[Developer Guide](docs/DEVELOPER.md)** for:
 npm start     # Start production server
 npm run dev   # Start development server with auto-reload
 ```
-
-## Requirements
-
-- **Language:** JavaScript (ES2020+)
-- **Runtime:** Node.js ≥20.6.0
-- **Module system:** ES6 modules
-- **Browser:** Modern browser with ES6+ support
 
 ## License
 

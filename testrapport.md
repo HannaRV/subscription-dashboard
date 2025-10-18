@@ -10,7 +10,7 @@
 
 ## Komplett testdokumentation
 
-Detta dokument innehåller detaljerade testfall för Subscription Dashboard MVP. Alla tester utförs manuellt via webbgränssnitt då applikationen är en enkel MVP utan databas eller användarautentisering.
+Detta dokument innehåller detaljerade testfall för Subscription Dashboard MVP. Alla tester utförs manuellt via webbgränssnitt då applikationen är en enkel MVP utan databas eller användarautentisering. Se [kravspecifikation.md](kravspecifikation.md) för fullständiga kravdefinitioner.
 
 ---
 

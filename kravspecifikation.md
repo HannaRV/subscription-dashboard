@@ -95,8 +95,8 @@ I denna kravspecifikation används följande prefixsystem för att tydligt kateg
 
 ### 2.5 Underhållbarhet
 
-**NF2.5.1:** Koden ska följa Clean Code-principer (kapitel 2-11)  
-**NF2.5.2:** Systemet ska följa MVC-arkitektur med tydlig separation of concerns  
+**NF2.5.1:** Koden ska följa Clean Code-principer
+**NF2.5.2:** Systemet ska separera presentation, business logic och data access
 **NF2.5.3:** Modulen (@hr222sy/subscription-tracker) ska vara isolerad via Repository Pattern  
 **NF2.5.4:** Alla publika metoder ska vara dokumenterade med JSDoc  
 
@@ -117,9 +117,8 @@ I denna kravspecifikation används följande prefixsystem för att tydligt kateg
 - Backend: Node.js (≥20.6.0), Express 5
 - npm-modul: @hr222sy/subscription-tracker (version 1.0.0)
 - Säkerhet: helmet, express-rate-limit
-
-**O3.1.3:** Systemet ska följa MVC-arkitektur  
-**O3.1.4:** Systemet ska driftsättas publikt (Vercel, Render eller liknande)  
+**O3.1.3:** Systemet ska följa en layered architecture med separation of concerns
+**O3.1.4:** Systemet ska driftsättas publikt
 
 ### 3.2 Versionshantering
 

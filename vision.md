@@ -37,7 +37,7 @@ This leads to inefficient subscription management where valuable money is wasted
 - Make informed decisions about which services to keep
 
 **Typical characteristics:**
-- Has 5-15 active subscriptions
+- Has several active subscriptions
 - Uses streaming services, software tools, gym memberships, etc.
 - Wants to budget and reduce unnecessary spending
 - Comfortable using web applications
@@ -164,7 +164,7 @@ Subscription Dashboard aims to deliver:
 - **CSS3** - Responsive styling
 
 ### Architecture
-- **MVC Pattern** - Clear separation of concerns
+- **MVC-inspired architecture** - Clear separation of Model, View, and Controller concerns
 - **Repository Pattern** - Data access abstraction
 - **Object-Oriented Design** - Classes with single responsibilities
 - **Clean Code Principles** - Readable, maintainable code
