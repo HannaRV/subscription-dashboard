@@ -19,9 +19,9 @@ export class SubscriptionRouter {
 
     /**
      * Creates and configures the subscription router.
-     * 
-     * @param {SubscriptionController} subscriptionController - Controller instance (optional, creates new if not provided)
-     * @param {SubscriptionValidation} validator - Validator instance (optional, creates new if not provided)
+     *
+     * @param {SubscriptionController} [subscriptionController] - Injected for testing
+     * @param {SubscriptionValidation} [validator] - Injected for testing
      */
     constructor(
         subscriptionController = new SubscriptionController(),
@@ -37,20 +37,17 @@ export class SubscriptionRouter {
      * Configures all subscription-related routes.
      */
     #configureRoutes() {
-        // Serve HTML dashboard
+
         this.#router.get('/', (req, res) =>
             this.#subscriptionController.displayDashboard(req, res))
 
-        // API endpoint for subscription data
         this.#router.get('/api/subscriptions', (req, res) =>
             this.#subscriptionController.getSubscriptionsData(req, res))
 
-        // Add subscription
         this.#router.post('/add',
             (req, res, next) => this.#validator.validateNewSubscription(req, res, next),
             (req, res) => this.#subscriptionController.addSubscription(req, res))
 
-        // Remove subscription by name
         this.#router.post('/remove/:name',
             (req, res, next) => this.#validator.validateSubscriptionName(req, res, next),
             (req, res) => this.#subscriptionController.removeSubscription(req, res))
@@ -58,7 +55,7 @@ export class SubscriptionRouter {
 
     /**
      * Returns the configured Express router.
-     * 
+     *
      * @returns {express.Router} Express router instance
      */
     getRouter() {

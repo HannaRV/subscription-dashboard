@@ -20,8 +20,8 @@ class SubscriptionAPI {
     /**
      * Fetches all subscriptions from the server.
      * 
-     * @param {string} viewFrequency - Frequency to view costs (weekly, monthly, yearly)
-     * @returns {Promise<Object>} Subscription data with subscriptions array and total cost
+     * @param {string} [viewFrequency='monthly'] - 'weekly' | 'monthly' | 'yearly'
+     * @returns {Promise<Object>} { subscriptions: Array, totalCost: number, viewFrequency: string }
      * @throws {Error} If fetch fails or network error occurs
      */
     async fetchSubscriptions(viewFrequency = DEFAULT_VIEW_FREQUENCY) {
@@ -47,11 +47,10 @@ class SubscriptionAPI {
  */
 class SubscriptionElementFactory {
     /**
-     * Creates a complete subscription element.
-     * 
-     * @param {Object} subscription - Subscription data
-     * @returns {HTMLElement} Subscription element
-     */
+      * @param {Object} subscription - Subscription data
+      * @param {string} viewFrequency - Display frequency
+      * @returns {HTMLElement} Complete subscription item with info, price, and remove button
+      */
     createSubscriptionElement(subscription, viewFrequency) {
         const containerDiv = document.createElement('div')
         containerDiv.className = CSS_CLASSES.SUBSCRIPTION_ITEM
@@ -68,10 +67,8 @@ class SubscriptionElementFactory {
     }
 
     /**
-     * Creates info section for subscription.
-     * 
-     * @param {Object} subscription - Subscription data
-     * @returns {HTMLElement} Info element
+     * @param {Object} subscription - { name, category, originalFrequency, originalPrice }
+     * @returns {HTMLElement} Info section with name and details
      */
     createInfoSection(subscription) {
         const infoDiv = document.createElement('div')
@@ -92,11 +89,9 @@ class SubscriptionElementFactory {
     }
 
     /**
-     * Creates price display element.
-     * 
      * @param {number} displayCost - Cost to display
-     * @param {string} viewFrequency - Frequency label (weekly, monthly, yearly)
-     * @returns {HTMLElement} Price element
+     * @param {string} viewFrequency - 'weekly' | 'monthly' | 'yearly'
+     * @returns {HTMLElement} Formatted price element
      */
     createPriceElement(displayCost, viewFrequency) {
         const priceDiv = document.createElement('div')
@@ -106,9 +101,7 @@ class SubscriptionElementFactory {
     }
 
     /**
-     * Creates remove button form.
-     * 
-     * @param {string} name - Subscription name
+     * @param {string} name - Subscription name to remove
      * @returns {HTMLElement} Form with remove button
      */
     createRemoveForm(name) {
@@ -127,9 +120,7 @@ class SubscriptionElementFactory {
     }
 
     /**
-     * Creates empty state message element.
-     * 
-     * @returns {HTMLElement} Empty state element
+     * @returns {HTMLElement} Empty state message element
      */
     createEmptyState() {
         const emptyDiv = document.createElement('div')
@@ -139,10 +130,8 @@ class SubscriptionElementFactory {
     }
 
     /**
-     * Creates error message element.
-     * 
-     * @param {string} message - Error message
-     * @returns {HTMLElement} Error element
+     * @param {string} message - Error message to display
+     * @returns {HTMLElement} Error message element
      */
     createErrorElement(message) {
         const errorDiv = document.createElement('div')
@@ -162,7 +151,7 @@ class SubscriptionView {
     #elementFactory
 
     /**
-     * Creates a new subscription view with default DOM element IDs.
+     * Initializes view with DOM element references.
      */
     constructor() {
         const LIST_CONTAINER_ID = 'subscriptions-list'
@@ -174,10 +163,8 @@ class SubscriptionView {
     }
 
     /**
-     * Renders subscription list.
-     * 
-     * @param {Array} subscriptions - Array of subscription objects
-     * @param {string} viewFrequency - Frequency to display
+     * @param {Array<Object>} subscriptions - Subscription objects to render
+     * @param {string} viewFrequency - Display frequency for prices
      */
     renderSubscriptions(subscriptions, viewFrequency) {
         this.#clearContainer()
@@ -194,18 +181,14 @@ class SubscriptionView {
     }
 
     /**
-     * Updates total cost display.
-     * 
-     * @param {number} cost - Total cost
-     * @param {string} viewFrequency - Frequency view (weekly, monthly, yearly)
+     * @param {number} cost - Total cost to display
+     * @param {string} viewFrequency - 'weekly' | 'monthly' | 'yearly'
      */
     updateTotalCost(cost, viewFrequency) {
         this.#totalCostDisplay.textContent = `Total ${viewFrequency} cost: ${cost.toFixed(2)} kr`
     }
 
     /**
-     * Shows error message to user.
-     * 
      * @param {string} message - Error message to display
      */
     showError(message) {
@@ -239,12 +222,12 @@ class SubscriptionApp {
     }
 
     /**
-     * Initializes the application by loading subscriptions and setting up event listeners.
+     * Loads initial subscriptions and sets up frequency selector event listener.
      */
     async initialize() {
         try {
             await this.loadSubscriptions(DEFAULT_VIEW_FREQUENCY)
-            
+
             const frequencySelect = document.getElementById('view-frequency')
             if (frequencySelect) {
                 frequencySelect.addEventListener('change', async (event) => {
@@ -258,9 +241,7 @@ class SubscriptionApp {
     }
 
     /**
-     * Loads and displays subscriptions for specified frequency.
-     * 
-     * @param {string} viewFrequency - Frequency to view (weekly, monthly, yearly)
+     * @param {string} viewFrequency - 'weekly' | 'monthly' | 'yearly'
      */
     async loadSubscriptions(viewFrequency) {
         try {

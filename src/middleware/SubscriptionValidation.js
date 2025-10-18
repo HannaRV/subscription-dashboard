@@ -12,11 +12,9 @@ import { HTTP_STATUS } from '../config/httpStatus.js'
  */
 export class SubscriptionValidation {
     /**
-     * Validates a new subscription.
+     * Validates a new subscription from request body.
      * 
-     * @param {object} req - Express request object
-     * @param {object} res - Express response object
-     * @param {Function} next - Express next middleware function
+     * @param {object} req.body - { name, price, frequency, category }
      */
     validateNewSubscription(req, res, next) {
         try {
@@ -35,9 +33,7 @@ export class SubscriptionValidation {
     /**
      * Validates subscription name from URL parameter.
      * 
-     * @param {object} req - Express request object
-     * @param {object} res - Express response object
-     * @param {Function} next - Express next middleware function
+     * @param {string} req.params.name - Subscription name
      */
     validateSubscriptionName(req, res, next) {
         try {
@@ -68,17 +64,12 @@ class SubscriptionFieldValidator {
     #data
 
     /**
-     * Creates a new field validator.
-     * 
-     * @param {object} data - Data object to validate
+     * @param {object} data - Raw subscription data to validate
      */
     constructor(data) {
         this.#data = data
     }
 
-    /**
-     * Validates all fields.
-     */
     validate() {
         this.#validateName()
         this.#validatePrice()
@@ -87,9 +78,7 @@ class SubscriptionFieldValidator {
     }
 
     /**
-     * Returns sanitized data.
-     * 
-     * @returns {object} Sanitized subscription data
+     * @returns {object} Trimmed and type-converted data: { name, price, frequency, category }
      */
     getSanitizedData() {
         return {

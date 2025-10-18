@@ -8,36 +8,28 @@
 import { SubscriptionRepository } from '../models/SubscriptionRepository.js'
 import { HTTP_STATUS } from '../config/httpStatus.js'
 
+
 /**
- * Handles HTTP requests for subscription management.
+ * Coordinates subscription operations between HTTP layer and data repository.
  */
 export class SubscriptionController {
     #repository
 
     /**
-     * Creates a new subscription controller.
-     * 
-     * @param {SubscriptionRepository} repository - Repository instance (optional, creates new if not provided)
+     * @param {SubscriptionRepository} [repository] - Injected for testing, creates new instance if omitted
      */
     constructor(repository = new SubscriptionRepository()) {
         this.#repository = repository
     }
 
-    /**
-     * Displays the main dashboard with all subscriptions.
-     * 
-     * @param {object} req - Express request object
-     * @param {object} res - Express response object
-     */
     displayDashboard(req, res) {
         res.sendFile('index.html', { root: 'src/views' })
     }
 
     /**
-     * Gets subscription data as JSON for API.
+     * Returns subscriptions converted to requested frequency.
      * 
-     * @param {object} req - Express request object
-     * @param {object} res - Express response object
+     * @param {object} req.query.view - 'weekly' | 'monthly' | 'yearly' (default: 'monthly')
      */
     getSubscriptionsData(req, res) {
         try {
@@ -60,10 +52,9 @@ export class SubscriptionController {
     }
 
     /**
-     * Adds a new subscription.
+     * Adds a new subscription from form data.
      * 
-     * @param {object} req - Express request object
-     * @param {object} res - Express response object
+     * @param {object} req.body - { name, price, frequency, category }
      */
     addSubscription(req, res) {
         const { name, price, frequency, category } = req.body
@@ -79,10 +70,9 @@ export class SubscriptionController {
     }
 
     /**
-     * Removes a subscription by name.
-     * 
-     * @param {object} req - Express request object
-     * @param {object} res - Express response object
+     * Removes subscription by name from URL parameter.
+     *
+     * @param {string} req.params.name - URL-encoded subscription name
      */
     removeSubscription(req, res) {
         const { name } = req.params

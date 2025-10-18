@@ -55,9 +55,10 @@ export class SubscriptionRepository {
     }
 
     /**
-     * Gets all subscriptions as plain objects.
+     * Gets all subscriptions as plain objects with costs converted to requested frequency.
      * 
-     * @returns {Array} Array of subscription objects
+     * @param {string} [viewFrequency='monthly'] - 'weekly' | 'monthly' | 'yearly'
+     * @returns {Array<object>} Subscriptions with { name, originalPrice, originalFrequency, category, displayCost }
      */
     getAllSubscriptionsAsPlainObjects(viewFrequency = 'monthly') {
         const subscriptions = this.#collection.getAllSubscriptions()

@@ -20,10 +20,10 @@ export class SecurityHandler {
     }
 
     /**
-     * Returns middleware for security headers.
-     * Uses Helmet library but abstracts implementation details.
-     * 
-     * @returns {Function} Security headers middleware
+     * Returns Helmet middleware configured with CSP directives.
+     * Abstracts Helmet implementation to allow easy replacement if needed.
+     *
+     * @returns {Function} Express middleware for security headers
      */
     getSecurityHeadersMiddleware() {
         return helmet({
@@ -38,18 +38,16 @@ export class SecurityHandler {
     }
 
     /**
-     * Returns rate limiting middleware.
-     * 
-     * @returns {Function} Rate limiting middleware
+     * @returns {Function} Express middleware for rate limiting
      */
     getRateLimitMiddleware() {
         return this.#rateLimiter
     }
 
     /**
-     * Creates rate limiter middleware.
-     * 
-     * @returns {Function} Rate limiting middleware
+     * Configures rate limiter: 100 requests per minute per IP.
+     *
+     * @returns {Function} Express rate limiting middleware
      */
     #createRateLimiter() {
         return rateLimit({

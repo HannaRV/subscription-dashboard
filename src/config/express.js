@@ -29,9 +29,6 @@ export class ExpressApplication {
         this.#configureErrorHandling()
     }
 
-    /**
-     * Configures security middleware.
-     */
     #configureSecurityMiddleware() {
         // Use helmet for security headers
         this.#application.use(this.#securityHandler.getSecurityHeadersMiddleware())
@@ -40,32 +37,20 @@ export class ExpressApplication {
         this.#application.use(this.#securityHandler.getRateLimitMiddleware())
     }
 
-    /**
-     * Configures body parsing middleware.
-     */
     #configureBodyParsing() {
         this.#application.use(express.json())
         this.#application.use(express.urlencoded({ extended: true }))
     }
 
-    /**
-     * Configures static file serving.
-     */
     #configureStaticFiles() {
         this.#application.use(express.static('src/public'))
     }
 
-    /**
-     * Configures application routes.
-     */
     #configureRoutes() {
         const subscriptionRouter = new SubscriptionRouter()
         this.#application.use('/', subscriptionRouter.getRouter())
     }
 
-    /**
-     * Configures error handling middleware.
-     */
     #configureErrorHandling() {
         this.#application.use((error, req, res, next) => 
             this.#errorHandler.handle(error, req, res, next))
@@ -73,8 +58,8 @@ export class ExpressApplication {
 
     /**
      * Returns the configured Express application.
-     * 
-     * @returns {object} Express application
+     *
+     * @returns {express.Application} Express application instance
      */
     getApplication() {
         return this.#application

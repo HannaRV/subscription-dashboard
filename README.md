@@ -28,7 +28,7 @@ Created as part of course 1dv610 at Linnaeus University, demonstrating code qual
 
 ## Screenshots
 
-<img src="docs/images/dashboard.png" alt="Dashboard Overview" width="500">
+<img src="docs/images/dashboard.png" alt="Dashboard Overview" width="400">
 *Main dashboard showing all subscriptions and total monthly cost*
 
 

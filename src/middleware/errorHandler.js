@@ -40,12 +40,10 @@ export class ErrorHandler {
 }
 
 /**
- * Logs error details to console.
+ * Logs error details to console with stack trace in development mode.
  */
 class ErrorLogger {
     /**
-     * Logs error information.
-     *
      * @param {Error} error - Error object
      * @param {object} req - Express request object
      */
@@ -65,7 +63,7 @@ class ErrorLogger {
 }
 
 /**
- * Classifies errors into appropriate HTTP responses.
+ * Classifies errors into appropriate HTTP responses based on error message patterns.
  */
 class ErrorClassifier {
     #ERROR_TYPE_VALIDATION = 'Validation Error'
@@ -75,10 +73,10 @@ class ErrorClassifier {
     #NOT_FOUND_KEYWORD = 'not found'
 
     /**
-     * Classifies an error and returns appropriate response.
+     * Classifies an error by analyzing its message and returns appropriate HTTP response details.
      *
      * @param {Error} error - Error object
-     * @returns {object} Error response object with status, type, and message
+     * @returns {object} Response with { status: number, type: string, message: string }
      */
     classify(error) {
         if (this.#isValidationError(error)) {
@@ -124,10 +122,8 @@ class ErrorClassifier {
  */
 class ErrorResponder {
     /**
-     * Sends error response.
-     *
      * @param {object} res - Express response object
-     * @param {object} errorResponse - Error response object
+     * @param {object} errorResponse - { status, type, message }
      */
     respond(res, errorResponse) {
         res.status(errorResponse.status).json({
