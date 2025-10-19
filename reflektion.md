@@ -42,8 +42,9 @@ Jag har strävat efter att hålla koden så självdokumenterande som möjligt f�
 [Screenshot]
 
 
-### Kapitel 5: Formatting
-[4-6 meningar]
+## Kapitel 5 - Formatting
+I modulen och appens backend-filer följer jag Clean Codes princip om små filer (typiskt < 200 rader) med newspaper structure (constructor först, public methods, sedan private methods) och vertical organization där ExpressApplication visar "caller above callee" genom constructor som orkestrerar via privata metoder. Vertical openness separerar koncept medan nära relaterad kod grupperas tillsammans. I frontend har jag dock main.js som är på 262 rader vilket överskrider rekommendationen, men där varje klass är individuellt liten och tillsammans bildar en cohesive modul. En trade-off där jag prioriterade pragmatisk enkelhet (alla frontend-klasser tillsammans utan imports) över att strikt följa rekommendationen, vilket underlättar utveckling och förståelse av frontend-flödet som helhet.
+
 
 **Exempel från modulen:**
 
