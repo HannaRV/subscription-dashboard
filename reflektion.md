@@ -66,7 +66,7 @@ och frontend inte behöver objektets beteende. Clean Code rekommenderar att anv�
 
 
 ### Kapitel 7: Error Handling
-[4-6 meningar]
+Jag använder exceptions konsekvent genom koden istället för return codes vilket separerar felhantering från business logic, med en centraliserad ErrorHandler som delegerar till Logger, Classifier och Responder. ErrorClassifier använder keyword-matching för att klassificera modulens standard Error-objekt. Det är en medveten trade-off där custom error classes hade gett type-safety men brutit mot boundary-principen genom att exponera module internals och skapa tight coupling mellan modul och app. Keyword-matching är fragilt men pragmatiskt för detta MVP där modulens felmeddelanden är stabila och projekttiden begränsad. Alternativet re-wrapping hade behållit loose coupling men krävt mer utvecklingstid och tillfört komplexitet. Constructor validation säkerställer fail-fast där objekt aldrig kan vara i ogiltigt tillstånd och inga null-returns används, metoder returnerar tomma arrays eller kastar exceptions enligt Clean Code.
 
 **Exempel från modulen:**
 
