@@ -35,9 +35,9 @@ Created as part of course 1dv610 at Linnaeus University, demonstrating code qual
 <img src="docs/images/dashboard.png" alt="Dashboard Overview" width="400">
 *Main dashboard showing all subscriptions and total monthly cost*
 
-## 🚀 Live Demo
+## Live Demo
 
-**Try the application:** [https://subscription-dashboard-9yzo.onrender.com](https://subscription-dashboard-9yzo.onrender.com)
+🚀 **Try the application:** [https://subscription-dashboard-9yzo.onrender.com](https://subscription-dashboard-9yzo.onrender.com)
 
 ⚠️ *Note: First load may take 30-50 seconds as the free tier spins up after inactivity.*
 
@@ -45,6 +45,7 @@ Created as part of course 1dv610 at Linnaeus University, demonstrating code qual
 ## Table of Contents
 - [Core Features](#core-features)
 - [Purpose](#purpose)
+- [Live Demo](#live-demo)
 - [Screenshot](#screenshot)
 - [Installation](#installation)
 - [Usage](#usage)
