@@ -45,7 +45,7 @@ Created as part of course 1dv610 at Linnaeus University, demonstrating code qual
 - [Technologies](#technologies)
 - [Security](#security)
 - [Project Structure](#project-structure)
-- [For Developers](#for-developers)
+- [For developers](#developer-guide)
 - [License](#license)
 - [Author](#author)
 - [Academic Context](#academic-context)
@@ -164,11 +164,11 @@ subscription-dashboard/
 └── package.json
 ```
 
-## For Developers
+## Developer guide
 
 **Want to understand the codebase or contribute?**
 
-See the **[Developer Guide](docs/DEVELOPER.md)** for:
+See the **[Developer.md](docs/DEVELOPER.md)** for:
 - Detailed architecture documentation
 - Design pattern explanations
 - How to add new features
