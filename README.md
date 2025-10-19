@@ -2,6 +2,7 @@
 ![Node.js](https://img.shields.io/badge/node-%3E%3D20.6.0-brightgreen)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![npm module](https://img.shields.io/badge/npm-@hr222sy/subscription--tracker-blue)](https://www.npmjs.com/package/@hr222sy/subscription-tracker)
+[![Live Demo](https://img.shields.io/badge/demo-live-success?logo=render)](https://subscription-dashboard-9yzo.onrender.com)
 
 ⚠️ **Disclaimer:** This is a student project built for a school assignment focusing on Clean Code principles. 
 
@@ -33,6 +34,12 @@ Created as part of course 1dv610 at Linnaeus University, demonstrating code qual
 
 <img src="docs/images/dashboard.png" alt="Dashboard Overview" width="400">
 *Main dashboard showing all subscriptions and total monthly cost*
+
+## 🚀 Live Demo
+
+**Try the application:** [https://subscription-dashboard-9yzo.onrender.com](https://subscription-dashboard-9yzo.onrender.com)
+
+⚠️ *Note: First load may take 30-50 seconds as the free tier spins up after inactivity.*
 
 
 ## Table of Contents
