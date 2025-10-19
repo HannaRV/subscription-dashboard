@@ -54,7 +54,8 @@ I modulen och appens backend-filer följer jag Clean Codes princip om små filer
 
 
 ### Kapitel 6: Objects and Data Structures
-Koden separerar strikt mellan objects (private data + methods) och data structures (public data, no methods) utan hybrids enligt bokens "Object/Data Structure Anti-Symmetry".  getAllSubscriptionsAsPlainObjects() visar boundary-transformation där Subscription-objekt konverteras explicit till plain objects eftersom private fields inte serialiseras automatiskt och frontend inte behöver objektets beteende. Clean Code rekommenderar att använda data structures för data transfer. Ett alternativ hade varit toJSON() i Subscription-klassen, men explicit konvertering i Repository gör boundary-transformationen synlig och ansvarsfull istället för att gömma den i domain-objektet. Law of Demeter följs genom att Controller bara pratar med Repository, vilket undviker train wrecks i koden.
+Koden separerar strikt mellan objects (private data + methods) och data structures (public data, no methods) utan hybrids enligt bokens "Object/Data Structure Anti-Symmetry". getAllSubscriptionsAsPlainObjects() visar boundary-transformation där Subscription-objekt konverteras explicit till plain objects eftersom privata fält inte serialiseras automatiskt 
+och frontend inte behöver objektets beteende. Clean Code rekommenderar att använda data structures för data transfer. Ett alternativ hade varit toJSON() i Subscription-klassen för att behålla objekt-tänket hela vägen, men explicit konvertering i Repository gör boundary-transformationen tydligare och håller domain-objektet oberoende av serialization concerns. Law of Demeter följs genom att Controller bara pratar med Repository, vilket undviker train wrecks i koden.
 
 
 **Exempel från modulen:**
