@@ -33,7 +33,7 @@ argument kräver. Command Query Separation följs konsekvent genom koden föruto
 
 
 ### Kapitel 4: Comments
-[4-6 meningar]
+Jag har strävat efter att hålla koden så självdokumenterande som möjligt för att minska behovet av kommentarer. Min kommentarstrategi följer "Explain Yourself in Code" genom att dokumentera vad läsaren behöver veta, exempelvis parametrarnas struktur när den inte är självklar (req.body: { name, price, frequency, category }) men inte standardparametrar som målgruppen känner till. Constants får förklarande kommentarer när det är motiverat (HOURS_PER_MONTH = 30.44 // Average month length) vilket följer "Informative Comments" för icke-uppenbara värden. En medveten trade-off är att undvika redundant JSDoc som bara upprepar metodnamn (validateSubscription() behöver inte "Validates subscription") samtidigt som JSDoc ger IntelliSense och type hints. Detta balanserar bokens ideal om self-documenting code mot praktisk nytta av developer tools för API-kontrakt. Jag upplever att det har varit svårt att hålla mig konsekvent i dokumentations nivån genom all kod och jobbat aktivt med detta.
 
 **Exempel från modulen:**
 
