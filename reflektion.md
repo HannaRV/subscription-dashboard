@@ -76,7 +76,7 @@ Jag använder exceptions konsekvent genom koden istället för return codes vilk
 
 
 ### Kapitel 8: Boundaries
-[4-6 meningar]
+SubscriptionRepository isolerar npm-modulen där Controller inte känner till Subscription-klassen utan använder repositorys interface med appens vocabulär, vilket följer Clean Code:s "raise abstraction level by defining your own interface". SecurityHandler wrapprar helmet och express-rate-limit för centraliserad säkerhetskonfiguration och utbytbarhet vid ändringar i bibliotek. En central trade-off är Controllers tight coupling till Express (req, res, next). Wrapping hade gett bättre isolation men för MVP har jag valt denna approach då Express är stabilt, sällan ändras och cost/benefit-ratio inte motiverar den extra abstraktionen här. Frontend minimerar external beroenden genom fetch API.
 
 **Exempel från modulen:**
 
