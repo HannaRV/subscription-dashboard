@@ -7,6 +7,9 @@
 
 ## Intro
 
+Denna reflektion täcker två kodbaser: npm-modulen @hr222sy/subscription-tracker (business logic, domain objects) och webbapplikationen Subscription Dashboard (presentation layer, använder modulen). Vissa designval skiljer sig mellan dem 
+där modulen prioriterar API-stabilitet och återanvändbarhet medan appen prioriterar pragmatisk enkelhet för MVP-scope.
+
 ### Kapitel 2: Meaningful Names
 Både modulen och applikationen följer Clean Codes namngivningsprinciper konsekvent med substantivnamn för klasser och verbnamn för metoder. 
 Solution domain names används från etablerade patterns, appens 'Controller' och 'Repository' liksom modulens 'Collection' och 'Calculator' gör koden begriplig för utvecklare. Constants används genomgående för searchable names (WEEKS_PER_YEAR, HTTP_STATUS.BAD_REQUEST, VALID_FREQUENCIES) istället för magic numbers i båda projekten. I appens SubscriptionRepository uppstår en trade-off med getAllSubscriptionsAsPlainObjects() där namnet avslöjar returtypen (plain objects för JSON-serialisering) vilket bryter mot information Hiding. Skadan är dock begränsad då implementations detaljerna förblir dolda. Jag prioriterade meaningful distinction här mot modulens redan befintliga getAllSubscriptions() som returnerar domain objects där samma namn hade varit disinformation.
@@ -43,7 +46,7 @@ Jag har strävat efter att hålla koden så självdokumenterande som möjligt f�
 
 
 ## Kapitel 5 - Formatting
-I modulen och appens backend-filer följer jag Clean Codes princip om små filer (typiskt < 200 rader) med newspaper structure (constructor först, public methods, sedan private methods) och vertical organization där ExpressApplication visar "caller above callee" genom constructor som orkestrerar via privata metoder. Vertical openness separerar koncept medan nära relaterad kod grupperas tillsammans. I frontend har jag dock main.js som är på 262 rader vilket överskrider rekommendationen, men där varje klass är individuellt liten och tillsammans bildar en cohesive modul. En trade-off där jag prioriterade pragmatisk enkelhet (alla frontend-klasser tillsammans utan imports) över att strikt följa rekommendationen, vilket underlättar utveckling och förståelse av frontend-flödet som helhet.
+I modulen och appens backend-filer följer jag Clean Codes princip om små filer (typiskt < 200 rader) med newspaper structure där kod läses från hög till låg abstraktion, och "caller above callee" tillämpas där private helpers placeras direkt efter metoden som anropar dem. Vertical openness separerar koncept medan nära relaterad kod grupperas tillsammans. I frontend har jag dock main.js som är på 262 rader vilket överskrider rekommendationen, men där varje klass är individuellt liten och tillsammans bildar en cohesive modul. En trade-off där jag prioriterade pragmatisk enkelhet (alla frontend-klasser tillsammans utan imports) över att strikt följa rekommendationen, vilket underlättar utveckling och förståelse av frontend-flödet som helhet.
 
 
 **Exempel från modulen:**
@@ -55,8 +58,7 @@ I modulen och appens backend-filer följer jag Clean Codes princip om små filer
 
 ### Kapitel 6: Objects and Data Structures
 Koden separerar strikt mellan objects (private data + methods) och data structures (public data, no methods) utan hybrids enligt bokens "Object/Data Structure Anti-Symmetry". getAllSubscriptionsAsPlainObjects() visar boundary-transformation där Subscription-objekt konverteras explicit till plain objects eftersom privata fält inte serialiseras automatiskt 
-och frontend inte behöver objektets beteende. Clean Code rekommenderar att använda data structures för data transfer. Ett alternativ hade varit toJSON() i Subscription-klassen för att behålla objekt-tänket hela vägen, men explicit konvertering i Repository gör boundary-transformationen tydligare och håller domain-objektet oberoende av serialization concerns. Law of Demeter följs genom att Controller bara pratar med Repository, vilket undviker train wrecks i koden.
-
+och frontend inte behöver objektets beteende. Clean Code rekommenderar att använda data structures för data transfer. Ett alternativ hade varit toJSON() i Subscription-klassen för att behålla objekt-tänket hela vägen, men explicit konvertering i Repository gör boundary-transformationen tydligare och håller domain-objektet oberoende av serialization concerns. Repository's transformation anropar flera getters på Subscription (getName(), getPrice(), getFrequency(), getCategory()) vilket tekniskt bryter Law of Demeter, men är motiverat då Repository fungerar som adapter vars ansvar är att översätta mellan modulens domain objects och appens data structures. Controller däremot pratar endast med Repository och undviker train wrecks genom att aldrig direkt accessa Subscription-objekt, vilket följer Law of Demeter på applikationsnivå.
 
 **Exempel från modulen:**
 
@@ -97,7 +99,7 @@ Modulen testas via test-app där varje test-sektion har expected behavioral-besk
 
 ### Kapitel 10: Classes
 Alla klasser följer SRP där varje klass har ett ansvarsområde och en reason to change, ErrorHandler delegerar till Logger, Classifier och Responder istället för att bära allt ansvar internt. Klasserna visar hög cohesion där metoder konsekvent använder instance variables (activate/deactivate/isActive använder #activeStatus, Repository-metoder använder #collection). En trade-off är användningen av static där modulen använder publika static konstanter som del av API:et för att undvika magic numbers även för användare, medan appens privata konstanter inte använder static enligt KISS-principen då jag tyckte att tydligare kod vägde tyngre här än teoretisk minnesoptimering. Klasser designas enligt Open/Closed Principle där Repository använder map 
-(#frequencyCalculators) istället för switch statements för frequency-hantering och SubscriptionElementFactory encapsulerar DOM-creation, vilket gör att ny funktionalitet kan läggas till utan att modifiera existerande kod.Class organization följer Clean Code med member variables först, constructor, public methods och private methods sist vilket skapar konsistent läsbarhet genom kodbasen. Systemet är "organized for change" på klassnivå där varje klass har ett tydligt ansvar och ändringar isoleras till specifika klasser vilket minimerar ripple effects.
+(#frequencyCalculators) istället för switch statements för frequency-hantering och SubscriptionElementFactory encapsulerar DOM-creation, vilket gör att ny funktionalitet kan läggas till utan att modifiera existerande kod. Class organization följer Clean Code med member variables först, constructor, public methods och private methods sist vilket skapar konsistent läsbarhet genom kodbasen. Systemet är "organized for change" på klassnivå där varje klass har ett tydligt ansvar och ändringar isoleras till specifika klasser vilket minimerar ripple effects.
 
 **Exempel från modulen:**
 
