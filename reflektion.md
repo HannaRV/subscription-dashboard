@@ -96,7 +96,7 @@ Modulen testas via test-app där varje test-sektion har expected behavioral-besk
 
 
 ### Kapitel 10: Classes
-[4-6 meningar]
+Alla klasser följer Single Responsibility Principen där varje klass har ett ansvarsområde och en reason to change, ErrorHandler delegerar till Logger, Classifier och Responder istället för att bära allt ansvar internt. Klasserna visar hög cohesion där metoder konsekvent använder instance variables, (activate/deactivate/isActive använder #activeStatus, Repository-metoder använder #collection). En trade-off är användningen av static där modulen använder publika static konstanter som del av API:et för att undvika magic numbers även för användare, medan appens privata konstanter inte använder static enligt KISS-principen då jag tyckte att tydligare kod vägde tyngre här än teoretisk minnesoptimering. Class organization följer Clean Code med member variables först, constructor, public methods och private methods sist och systemet är "organized for change" där ändringar isoleras till specifika klasser vilket minimerar ripple effects.
 
 **Exempel från modulen:**
 
@@ -107,7 +107,7 @@ Modulen testas via test-app där varje test-sektion har expected behavioral-besk
 
 
 ### Kapitel 11: Systems
-[4-6 meningar]
+Applikationen separerar construction från use där ExpressApplication koordinerar system-startup (wiring av dependencies, middleware-konfiguration) medan runtime-logik hanteras av Controllers och Repository, vilket följer Clean Codes "Separation of Main". Tre-lagers arkitektur följs konsekvent där Presentation (Controller), Data Access (Repository) och Domain (npm-modul) kommunicerar genom clean boundaries utan att layers känner till varandras implementation detaljer. Configuration management följer "keep configurable data at high levels" där delade konstanter exporteras från domain layer (FREQUENCY), frontend-specifika (API_ENDPOINTS, CSS_CLASSES) grupperas i config.js, och class-specifika hålls private (#VALIDATION_KEYWORDS). Cross-cutting concerns (security, error handling, validation) hanteras genom middleware och appliceras globalt vilket undviker kod-duplicering och följer DRY-principen. Dependency injection med constructor injection och default parameters ger testbarhet utan komplexitet av DI-container, vilket är en pragmatisk trade-off för MVP-skala där enkelhet väger tyngre än full dependency inversion. Systemet är strukturerat för incremental growth där nya routes, validation rules eller security policies kan läggas till utan att påverka existerande kod tack vare separation of concerns och organized for change-principen.
 
 **Exempel från modulen:**
 
