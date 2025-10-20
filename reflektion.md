@@ -107,7 +107,15 @@ Alla klasser följer Single Responsibility Principen där varje klass har ett an
 
 
 ### Kapitel 11: Systems
-Applikationen separerar construction från use där ExpressApplication koordinerar system-startup (wiring av dependencies, middleware-konfiguration) medan runtime-logik hanteras av Controllers och Repository, vilket följer Clean Codes "Separation of Main". Tre-lagers arkitektur följs konsekvent där Presentation (Controller), Data Access (Repository) och Domain (npm-modul) kommunicerar genom clean boundaries utan att layers känner till varandras implementation detaljer. Configuration management följer "keep configurable data at high levels" där delade konstanter exporteras från domain layer (FREQUENCY), frontend-specifika (API_ENDPOINTS, CSS_CLASSES) grupperas i config.js, och class-specifika hålls private (#VALIDATION_KEYWORDS). Cross-cutting concerns (security, error handling, validation) hanteras genom middleware och appliceras globalt vilket undviker kod-duplicering och följer DRY-principen. Dependency injection med constructor injection och default parameters ger testbarhet utan komplexitet av DI-container, vilket är en pragmatisk trade-off för MVP-skala där enkelhet väger tyngre än full dependency inversion. Systemet är strukturerat för incremental growth där nya routes, validation rules eller security policies kan läggas till utan att påverka existerande kod tack vare separation of concerns och organized for change-principen.
+### Kapitel 11: Systems
+
+Applikationen separerar construction från use där ExpressApplication koordinerar system-startup medan runtime-logik hanteras av Controllers och Repository, vilket följer "Separation of Main" där tre-lagers arkitektur (Presentation, Data Access, Domain) kommunicerar genom clean boundaries. Systemets arkitektur separerar concerns där appen ansvarar för presentation och data access (SubscriptionRepository som adapter mellan Controller och modul) medan npm-modulen innehåller domain models (Subscription, SubscriptionCollection) och business logic, vilket ger loose coupling där Controller pratar appens språk utan att känna till modulens domain objects och gör modulen återanvändbar oberoende av appens infrastruktur. Configuration management följer "keep configurable data at high levels" där delade konstanter exporteras från domain layer, frontend-specifika grupperas i config.js, och class-specifika hålls private. Cross-cutting concerns (security, error handling, validation) hanteras genom middleware och appliceras globalt vilket undviker kod-duplicering enligt DRY-principen. Dependency injection är en trade-off mellan flexibilitet och enkelhet: backend använder constructor injection med default parameters vilket ger loose coupling men tillför konstruktor-komplexitet, medan frontend använder direct instantiation vilket ger enklare kod men med tight coupling. Denna approach är motiverad av kontextuell skillnad där backends lager-arkitektur motiverar DI-overhead, medan frontends cohesive klasser som en naturlig enhet inte har alternativa implementationer att byta mot vilket gör DI till över-engineering enligt YAGNI. Systemet är strukturerat för incremental growth där nya delar kan läggas till utan att påverka existerande kod.
+
+**Exempel från modulen:**
+
+**Exempel från appen:**
+
+[Screenshot]
 
 **Exempel från modulen:**
 
