@@ -86,7 +86,7 @@ SubscriptionRepository isolerar npm-modulen där Controller inte känner till Su
 
 
 ### Kapitel 9: Unit Tests
-[4-6 meningar]
+Modulen testas via test-app där varje test-sektion har expected behavioral-beskrivningar följt av console output för manuell verifiering, vilket följer Clean Codes princip om descriptive test names och self-documenting tests, medan appen testas via testspecifikation och testrapport med UI-testning. F.I.R.S.T-principerna följs där testerna är Fast, Independent, Repeatable och Timely (skrivna under utveckling), men Self-Validating kräver manuell jämförelse av output mot expected behavioral istället för automatiska assertions. En medveten trade-off var manuell testning istället för automatiserat framework som hade gett Self-Validating genom boolean assertions, men för MVP med tidsbegränsning var denna approach mer pragmatisk. Testerna täcker normal flow, edge cases och error handling med descriptive error messages.
 
 **Exempel från modulen:**
 
