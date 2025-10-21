@@ -16,13 +16,13 @@ export class SubscriptionRepository {
     #frequencyCalculators
 
     /**
-     * Creates a new subscription repository with empty collection.
+     * Initializes repository with empty collection and cost calculators.
      */
     constructor() {
         this.#collection = new SubscriptionCollection()
         this.#costCalculator = new CostCalculator()
 
-        // Map frequencies to calculator methods
+        //  Maps frequency types to their corresponding calculator methods.
         this.#frequencyCalculators = {
             weekly: {
                 single: (subscription) => this.#costCalculator.calculateWeeklyCost(subscription),

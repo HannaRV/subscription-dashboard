@@ -82,9 +82,9 @@ Felmeddelanden visas på svenska och kan variera mellan webbläsare.
 - Inga befintliga prenumerationer
 
 **Teststeg:**
-1. Lägg till prenumeration 1 (Netflix)
-2. Lägg till prenumeration 2 (Spotify)
-3. Lägg till prenumeration 3 (SATS)
+1. Lägg till prenumeration 1 (Netflix, 139, monthly, streaming)
+2. Lägg till prenumeration 2 (Spotify, 1200, yearly, music)
+3. Lägg till prenumeration 3 (SATS, 150, weekly, fitness)
 4. Observera listan
 
 **Förväntat resultat:**
