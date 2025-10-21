@@ -16,10 +16,12 @@ I appens SubscriptionRepository uppstår en trade-off med getAllSubscriptionsAsP
 
 
 ### Screenshots
-![Exempel från modulen på privata fält och konstanter](../submission/images/module_subscription_class_kap2.png)  
+![Exempel från modulen på privata fält och konstanter](../submission/images/module_subscription_class_kap2.png)
+---
 ![Exempel från modulen på verb metoder och naming patterns](../submission/images/module_subscriptioncollection_kap2.png)  
-
-![Exempel från appen på samlade gemensamma konstanter, searchable names](../submission/images/app_config_constants.png)  
+---
+![Exempel från appen på samlade gemensamma konstanter, searchable names](../submission/images/app_config_constants.png)
+---
 ![Exempel från appen på solution domain name och tydliga verb-metoder](../submission/images/app_securityhandler_kap2.png)
 
 
@@ -31,8 +33,9 @@ Command Query Separation följs genom koden förutom i removeSubscription() som 
 
 ### Screenshots
 ![Exempel från modulen på små metoder, Do One Thing, CQS](../submission/images/module_subscription_class_kap3.png)  
-
-![Exempel från appen på ExpressApplication med decomposition och små funktioner](../submission/images/app_express_kap3.png)  
+---
+![Exempel från appen på ExpressApplication med decomposition och små funktioner](../submission/images/app_express_kap3.png)
+--- 
 ![Exempel från appen på naming patterns med konsekvent verb-användning](../submission/images/app_subscriptionvalidation_kap3.png)
 
 
@@ -43,10 +46,12 @@ Jag har strävat efter att hålla koden så självdokumenterande som möjligt f�
 Det har varit en knepig balansgång att undvika redundant JSDoc samtidigt som JSDoc ger IntelliSense och type hints, vilket ställer bokens ideal om self-documenting code mot praktisk nytta av developer tools för API-kontrakt. Jag upplever att det har varit svårt att hålla mig konsekvent i dokumentationsnivån genom all kod men jobbat aktivt med detta.
 
 ### Screenshots
-![Exempel från modulen på konstanter med informativa kommentarer när värden inte är uppenbara](../submission/images/module_costcalculator_kap4.png)  
-![Exempel från modulen på JSDoc med endast type hints, undviker redundant beskrivning](../submission/images/module_costcalculator2_kap4.png)  
-
-![Exempel från appen där JSDoc förklarar req.body struktur som inte är självklar från signaturen](../submission/images/app_subscriptioncontroller_kap4.png)  
+![Exempel från modulen på konstanter med informativa kommentarer när värden inte är uppenbara](../submission/images/module_costcalculator_kap4.png)
+---
+![Exempel från modulen på JSDoc med endast type hints, undviker redundant beskrivning](../submission/images/module_costcalculator2_kap4.png)
+---
+![Exempel från appen där JSDoc förklarar req.body struktur som inte är självklar från signaturen](../submission/images/app_subscriptioncontroller_kap4.png)
+---
 ![Exempel från appen där Class-level JSDoc förklarar syfte, method JSDoc förklarar return struktur](../submission/images/app_errorhandler_kap4.png)
 
 
@@ -57,10 +62,12 @@ I modulen och appens backend-filer följer jag Clean Codes princip om små filer
 I frontend har jag dock main.js som är på 262 rader vilket överskrider rekommendationen, men där varje klass är individuellt liten och tillsammans bildar en cohesive modul. En trade-off där jag prioriterade pragmatisk enkelhet (alla frontend-klasser tillsammans utan imports) över att strikt följa rekommendationen, vilket underlättar utveckling och förståelse av frontend-flödet som helhet.
 
 ### Screenshots
-![Exempel från modulen på caller above callee, public metod följd av private helper](../submission/images/module_subscriptioncollection_kap5.png)  
+![Exempel från modulen på caller above callee, public metod följd av private helper](../submission/images/module_subscriptioncollection_kap5.png)
+---
 ![Exempel från modulen på class organization, member variable, constructor och grupperade metoder](../submission/images/module_subscriptioncollection2_kap5.png)  
-
-![Exempel från appen](../submission/images/app_subscriptionrouter_kap5.png)  
+---
+![Exempel från appen](../submission/images/app_subscriptionrouter_kap5.png)
+---
 ![Exempel från appen på Main coordinator-klass med hela applikationsflödet i samma fil](../submission/images/app_main_kap5.png)
 
 
@@ -75,8 +82,9 @@ Controller däremot pratar endast med Repository och undviker train wrecks genom
 
 ### Screenshots
 ![Exempel från modulen på Object med private data och public methods](../submission/images/module_subscription_class_kap6.png)  
-
-![Exempel från appen där controller använder Repository, returnerar plain object (Data Structure)](../submission/images/app_subscriptioncontroller_kap6.png)  
+---
+![Exempel från appen där controller använder Repository, returnerar plain object (Data Structure)](../submission/images/app_subscriptioncontroller_kap6.png)
+---
 ![Exempel från appen där repository transformerar domain objects till plain objects vid boundary](../submission/images/app_subscriptionrepository_kap6.png)
 
 
@@ -90,10 +98,12 @@ Constructor validation säkerställer fail-fast där objekt aldrig kan vara i og
 
 
 ### Screenshots
-![Exempel från modulen på constructor validation med fail-fast, exceptions kastas innan assignment](../submission/images/module_subscription_class_kap7.png)  
+![Exempel från modulen på constructor validation med fail-fast, exceptions kastas innan assignment](../submission/images/module_subscription_class_kap7.png)
+---
 ![Exempel från modulen där metoder alltid returnerar array, aldrig null](../submission/images/module_subscription_class2_kap7.png)  
-
-![Exempel från appen på centraliserad ErrorHandler som delegerar](../submission/images/app_errorhandler2_kap7.png)  
+---
+![Exempel från appen på centraliserad ErrorHandler som delegerar](../submission/images/app_errorhandler2_kap7.png)
+---
 ![Exempel från appen där ErrorClassifier använder keyword-matching för att klassificera standard Error-objekt](../submission/images/app_errorhandler_kap7.png)
 
 
@@ -104,7 +114,8 @@ En central trade-off är Controllers tight coupling till Express (req, res, next
 
 
 ### Screenshots
-![Exempel från appen där SubscriptionRepository isolerar modulen från Controller](../submission/images/app_subscriptionrepository_kap6.png)  
+![Exempel från appen där SubscriptionRepository isolerar modulen från Controller](../submission/images/app_subscriptionrepository_kap6.png)
+---
 ![Exempel från appen där SecurityHandler wrapprar third-party libraries (helmet, express-rate-limit)](../submission/images/app_securityhandler_kap2.png)
 
 
@@ -116,11 +127,14 @@ F.I.R.S.T-principerna följs delvis där testerna är Fast, Independent, Repeata
 
 
 ### Screenshots
-![Exempel från modulen på console output](../submission/images/module_console_output_kap9.png)  
+![Exempel från modulen på console output](../submission/images/module_console_output_kap9.png)
+---
 ![Exempel från modulen på console output](../submission/images/module_console_output2_kap9.png)  
-
+---
 ![Exempel från appen från testspecifikation](../submission/images/app_testspecifikation_kap9.png)  
-![Exempel från appen från testrapport](../submission/images/app_testrapport_kap9.png)  
+---
+![Exempel från appen från testrapport](../submission/images/app_testrapport_kap9.png)
+---
 ![Exempel från appen från UI](../submission/images/app_UI_kap9.png)
 
 
@@ -135,8 +149,9 @@ Class organization följer Clean Code med member variables först, constructor, 
 
 ### Screenshots
 ![Exempel från modulen på class organization med cohesion, alla metoder använder #subscriptions](../submission/images/module_subscriptioncollection_kap10.png)  
-
-![Exempel från appen på factory pattern med delegerade create-metoder](../submission/images/app_main_kap10.png)  
+---
+![Exempel från appen på factory pattern med delegerade create-metoder](../submission/images/app_main_kap10.png)
+---
 ![Exempel från appen med map istället för switch, Open/Closed Principle](../submission/images/app_subscriptionrepository_kap10.png)
 
 
@@ -152,7 +167,9 @@ Systemet är strukturerat för incremental growth där nya komponenter kan lägg
 
 
 ### Screenshots
-![Exempel från appen på main entry point med minimal startup logic](../submission/images/app_server_kap11.png)  
-![Exempel från appen på system coordination och middleware configuration](../submission/images/app_express_kap11.png)  
+![Exempel från appen på main entry point med minimal startup logic](../submission/images/app_server_kap11.png)
+---
+![Exempel från appen på system coordination och middleware configuration](../submission/images/app_express_kap11.png)
+--- 
 ![Exempel från appen på dependency injection pattern för testability](../submission/images/app_subscriptionrouter_kap11.png)
 
