@@ -17,16 +17,16 @@ I appens SubscriptionRepository uppstår en trade-off med getAllSubscriptionsAsP
 
 ### Screenshots
 ![Exempel från modulen på privata fält och konstanter](../submission/images/module_subscription_class_kap2.png)
-Exempel från modulen på privata fält och konstanter  
+**Exempel från modulen på privata fält och konstanter**  
 
 ![Exempel från modulen på verb metoder och naming patterns](../submission/images/module_subscriptioncollection_kap2.png)
-Exempel från modulen på verb metoder och naming patterns  
+**Exempel från modulen på verb metoder och naming patterns**  
 
 ![Exempel från appen på samlade gemensamma konstanter, searchable names](../submission/images/app_config_constants.png)
-Exempel från appen på samlade gemensamma konstanter, searchable names  
+**Exempel från appen på samlade gemensamma konstanter, searchable names**  
 
 ![Exempel från appen på solution domain name och tydliga verb-metoder](../submission/images/app_securityhandler_kap2.png)
-Exempel från appen på solution domain name och tydliga verb-metoder
+**Exempel från appen på solution domain name och tydliga verb-metoder**
 
 
 
